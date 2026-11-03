@@ -1,0 +1,64 @@
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build files
+dist/
+**/dist/
+build/
+**/build/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# ZIP and archive files
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Cache
+.cache/
+.parcel-cache/
+.vite/
+.eslintcache
+*.tsbuildinfo
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.swp
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Framework build folders
+.next/
+.nuxt/
+.output/
+.vercel/
