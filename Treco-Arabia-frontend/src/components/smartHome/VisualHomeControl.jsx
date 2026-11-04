@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lightbulb, Thermometer, Blinds, Lock, ShieldCheck, Zap } from 'lucide-react';
 
-// Image import
-import roomBg from '../assets/header_background_img/smart-home.png'; 
+import roomBg from '../../assets/header_background_img/smart-home.png'; 
 
 export default function VisualHomeControl({ lang = 'en' }) {
   const isArabic = lang === 'ar';
@@ -22,7 +21,6 @@ export default function VisualHomeControl({ lang = 'en' }) {
   ];
 
   return (
-    // Background me Premium Light Gradient aur Ambient Glows
     <section className="py-16 sm:py-24 bg-gradient-to-b from-white via-[#F0F7FF] to-[#EBF5FC]/60 text-slate-900 relative overflow-hidden border-b border-slate-200">
       
       {/* Background Ambient Glows */}

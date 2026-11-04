@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Lightbulb, Blinds, Lock, Thermometer, Volume2, Power, CheckCircle, Zap } from 'lucide-react';
-import smartHomeBg from '../assets/header_background_img/smart-home.png';
+import smartHomeBg from '../../assets/header_background_img/smart-home.png';
 
 function RoomVisualizer({ t }) {
   const [activeTab, setActiveTab] = useState('lighting');

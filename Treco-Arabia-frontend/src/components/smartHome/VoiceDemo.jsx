@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mic, Sparkles, CheckCircle2, Wifi, Volume2 } from 'lucide-react';
-import smartSpeakersImg from '../assets/jsd.png';
-import voiceEcosystemBadges from '../assets/image.png';
+import smartSpeakersImg from '../../assets/jsd.png';
+import voiceEcosystemBadges from '../../assets/image.png';
 
 function VoiceDemo({ t, lang = 'en' }) {
   const isArabic = lang === 'ar';

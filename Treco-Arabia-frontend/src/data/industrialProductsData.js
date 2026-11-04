@@ -474,8 +474,195 @@ export const industrialProducts = [
   },
 ];
 
+export const industrialNavigationCategories = [
+  {
+    id: 'customised-solutions',
+    slug: 'customised-solutions',
+    titleEn: 'Customised Solutions',
+    titleAr: 'حلول هندسية مخصصة',
+    path: '/industrial-automation/customised-solutions',
+    subItemsEn: [
+      'Custom Engineering Solutions',
+      'Industrial System Integration',
+      'Automation Consultancy',
+      'Turnkey Solutions'
+    ],
+    subItemsAr: [
+      'حلول هندسية مخصصة',
+      'تكامل الأنظمة الصناعية',
+      'استشارات الأتمتة',
+      'حلول تسليم مفتاح'
+    ]
+  },
+  {
+    id: 'pumps',
+    slug: 'pumps',
+    titleEn: 'Pumps',
+    titleAr: 'مضخات صناعية',
+    path: '/industrial-automation/pumps',
+    subItemsEn: [
+      'Centrifugal Pumps',
+      'Industrial Pumps',
+      'Multistage Pumps',
+      'Submersible Pumps',
+      'Chemical Pumps'
+    ],
+    subItemsAr: [
+      'مضخات الطرد المركزي',
+      'مضخات صناعية',
+      'مضخات متعددة المراحل',
+      'مضخات غاطسة',
+      'مضخات كيميائية'
+    ]
+  },
+  {
+    id: 'heating-pump',
+    slug: 'heating-pump',
+    titleEn: 'Heating Pump',
+    titleAr: 'مضخات التدفئة والتبريد',
+    path: '/industrial-automation/heating-pump',
+    subItemsEn: [
+      'Industrial Heat Pumps',
+      'Process Heating Systems',
+      'Thermal Oil Heating',
+      'Heat Transfer Systems'
+    ],
+    subItemsAr: [
+      'مضخات حرارية صناعية',
+      'أنظمة التسخين الصناعي',
+      'تسخين بالزيت الحراري',
+      'أنظمة نقل الحرارة'
+    ]
+  },
+  {
+    id: 'valves',
+    slug: 'valves',
+    titleEn: 'Valve',
+    titleAr: 'صمامات التحكم',
+    path: '/industrial-automation/valves',
+    subItemsEn: [
+      'Control Valves',
+      'Ball Valves',
+      'Gate Valves',
+      'Butterfly Valves',
+      'Globe Valves',
+      'Safety Valves'
+    ],
+    subItemsAr: [
+      'صمامات التحكم',
+      'صمامات كروية',
+      'صمامات البوابة',
+      'صمامات الفراشة',
+      'صمامات جلوب',
+      'صمامات الأمان'
+    ]
+  },
+  {
+    id: 'heavy-gears',
+    slug: 'heavy-gears',
+    titleEn: 'Heavy Gears',
+    titleAr: 'تروس النقل الميكانيكي',
+    path: '/industrial-automation/heavy-gears',
+    subItemsEn: [
+      'Industrial Gearboxes',
+      'Helical Gears',
+      'Worm Gearboxes',
+      'Heavy Duty Gear Systems'
+    ],
+    subItemsAr: [
+      'صناديق التروس الصناعية',
+      'تروس حلزونية',
+      'صناديق تروس دودية',
+      'أنظمة تروس للخدمة الشاقة'
+    ]
+  },
+  {
+    id: 'electrical-control-room',
+    slug: 'electrical-control-room',
+    titleEn: 'Electrical Control Room',
+    titleAr: 'غرف ولوحات التحكم الكهربائي',
+    path: '/industrial-automation/electrical-control-room',
+    subItemsEn: [
+      'Control Panels',
+      'MCC Panels',
+      'PCC Panels',
+      'PLC Control Panels',
+      'Switchgear Systems'
+    ],
+    subItemsAr: [
+      'لوحات التحكم',
+      'لوحات التحكم بالمحركات MCC',
+      'لوحات توزيع القدرة PCC',
+      'لوحات التحكم PLC',
+      'مفاتيح الجهد وقواطع التيار'
+    ]
+  },
+  {
+    id: 'electrical-motors',
+    slug: 'electrical-motors',
+    titleEn: 'Electrical Motors',
+    titleAr: 'محركات كهربائية',
+    path: '/industrial-automation/electrical-motors',
+    subItemsEn: [
+      'AC Motors',
+      'DC Motors',
+      'Servo Motors',
+      'Induction Motors',
+      'Explosion Proof Motors'
+    ],
+    subItemsAr: [
+      'محركات AC',
+      'محركات DC',
+      'محركات سيرفو',
+      'محركات حثية',
+      'محركات مقاومة للانفجار'
+    ]
+  },
+  {
+    id: 'oil-heating-system',
+    slug: 'oil-heating-system',
+    titleEn: 'Oil Heating System',
+    titleAr: 'أنظمة تسخين الزيت',
+    path: '/industrial-automation/oil-heating-system',
+    subItemsEn: [
+      'Thermal Oil Heating',
+      'Hot Oil Circulation',
+      'Industrial Oil Heaters',
+      'Oil Heating Skids'
+    ],
+    subItemsAr: [
+      'أنظمة الزيت الحراري',
+      'تدوير الزيت الساخن',
+      'سخانات الزيت الصناعية',
+      'منظومات تسخين الزيت'
+    ]
+  }
+];
 export function getProductById(id) {
-  return industrialProducts.find((p) => p.id === id) || industrialProducts[0];
+  if (!id) return industrialProducts[0];
+  const normalized = id.toLowerCase().replace(/_/g, '-');
+  const aliasMap = {
+    'customised-solutions': 'custom-solutions',
+    'custom-solutions': 'custom-solutions',
+    'pumps': 'pumps',
+    'pump': 'pumps',
+    'heating-pump': 'heating-pump',
+    'heating-pumps': 'heating-pump',
+    'valves': 'valve',
+    'valve': 'valve',
+    'heavy-gears': 'heavy-gears',
+    'heavy-gear': 'heavy-gears',
+    'electrical-control-room': 'control-room',
+    'control-room': 'control-room',
+    'electrical-motors': 'electrical-motors',
+    'electrical-motor': 'electrical-motors',
+    'motors': 'electrical-motors',
+    'motor': 'electrical-motors',
+    'oil-heating-system': 'oil-heating',
+    'oil-heating': 'oil-heating'
+  };
+  const targetId = aliasMap[normalized] || normalized;
+  return industrialProducts.find((p) => p.id === targetId || p.id === normalized) || industrialProducts[0];
 }
 
 export function getAllProducts() {

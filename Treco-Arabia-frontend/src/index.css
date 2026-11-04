@@ -1,19 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+/* ========================================================
+   ABB CORPORATE TYPOGRAPHY SYSTEM
+   Matched to ABB: 24px ABBVoiceDisplay, "Helvetica Neue", #1F1F1F
+   ======================================================== */
+
+@font-face {
+  font-family: 'ABBVoiceDisplay';
+  src: local('ABBVoiceDisplay'), local('Helvetica Neue'), local('Arial');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ABBvoice';
+  src: local('ABBvoice'), local('Helvetica Neue'), local('Arial');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: 'Plus Jakarta Sans', 'Cairo', system-ui, -apple-system, sans-serif;
+  --font-sans: 'ABBVoiceDisplay', 'ABBvoice', 'Helvetica Neue', Arial, 'Inter', sans-serif;
+  --font-abb: 'ABBVoiceDisplay', 'ABBvoice', 'Helvetica Neue', Arial, 'Inter', sans-serif;
+}
+
+:root {
+  --font-abb: 'ABBVoiceDisplay', 'ABBvoice', 'Helvetica Neue', Arial, 'Inter', sans-serif;
+  --font-arabic: 'Cairo', 'ABBVoiceDisplay', 'Helvetica Neue', Arial, sans-serif;
+  --color-abb-text: #1F1F1F;
 }
 
 @layer base {
   html, body {
-    font-family: 'Plus Jakarta Sans', 'Cairo', system-ui, -apple-system, sans-serif !important;
+    font-family: var(--font-abb) !important;
     background-color: #FFFFFF;
-    color: #0F172A;
+    color: var(--color-abb-text) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6, p, a, button, input, select, textarea, span, div {
-    font-family: 'Plus Jakarta Sans', 'Cairo', system-ui, -apple-system, sans-serif !important;
+    font-family: var(--font-abb) !important;
   }
 }
 
@@ -33,7 +63,83 @@
 [dir="rtl"] textarea,
 [dir="rtl"] span,
 [dir="rtl"] div {
-  font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  font-family: var(--font-arabic) !important;
+}
+
+/* ========================================================
+   STANDARDIZED HEADINGS & PARAGRAPHS (ABB SPECIFICATION):
+   - All section headings (h2): Bold, uppercase, #1F1F1F, 28px-36px
+   - All section paragraphs (p): Exactly 16px, #1F1F1F
+   ======================================================== */
+
+h2, .section-heading {
+  font-family: var(--font-abb) !important;
+  font-size: clamp(26px, 2.6vw, 36px) !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.015em !important;
+  text-transform: uppercase !important;
+  color: #1F1F1F !important;
+}
+
+/* Editorial section titles */
+.about-story-title {
+  font-family: var(--font-abb) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.2 !important;
+}
+
+/* Support dark sections without being overridden by #1F1F1F */
+.dark-section, [data-theme="dark"] {
+  color: #FFFFFF !important;
+}
+
+.dark-section h1,
+.dark-section h2,
+.dark-section h3,
+.dark-section h4,
+.dark-section .section-heading {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.dark-section p,
+.dark-section .section-p {
+  color: #CBD5E1 !important;
+}
+
+/* Remove gradient text-clipping on h2 spans so they render solid #1F1F1F */
+h2 span.bg-clip-text {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: #1F1F1F !important;
+  -webkit-text-fill-color: #1F1F1F !important;
+}
+
+/* Subheadings */
+h3 {
+  font-family: var(--font-abb) !important;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #1F1F1F;
+}
+
+/* Standardized Paragraph Body */
+p {
+  font-family: var(--font-abb) !important;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1F1F1F;
+}
+
+/* Dedicated section description paragraphs */
+.section-p, p.section-desc {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: #1F1F1F !important;
 }
 
 body {

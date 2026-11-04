@@ -90,11 +90,9 @@ function ContactSection({ t, lang }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* items-stretch lagaya hai taaki dono columns ki height barabar ho jaye */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch">
           
           {/* LEFT SIDE: Contact Info & Map Details */}
-          {/* flex flex-col justify-between lagaya hai taaki content top aur bottom se stretch ho */}
           <div className="flex flex-col justify-between h-full">
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-[#00A3E8]/30 text-[#00A3E8] font-extrabold text-xs uppercase tracking-wider mb-4 shadow-sm backdrop-blur-sm">
@@ -111,15 +109,15 @@ function ContactSection({ t, lang }) {
               </p>
             </div>
 
-            {/* Contact Cards - Making them flex-1 to fill space */}
+            {/* Contact Cards */}
             <div className="space-y-4 flex-1 flex flex-col justify-center">
               
               {/* Phone */}
               <a 
                 href="tel:+966500761791" 
-                className="bg-white/95 backdrop-blur-sm p-5 sm:p-6 rounded-3xl border border-slate-200/90 flex items-center gap-4 hover:border-emerald-500 shadow-[0_8px_25px_rgba(16,185,129,0.06)] hover:shadow-[0_15px_30px_rgba(16,185,129,0.18)] hover:-translate-y-1 transition-all group h-full sm:h-auto"
+                className="bg-white/95 backdrop-blur-sm p-5 sm:p-6 rounded-3xl border border-slate-200/90 flex items-center gap-4 hover:border-[#00A3E8] shadow-[0_8px_25px_rgba(0,163,232,0.06)] hover:shadow-[0_15px_30px_rgba(0,163,232,0.18)] hover:-translate-y-1 transition-all group h-full sm:h-auto"
               >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-xs flex-shrink-0">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#00A3E8]/10 border border-[#00A3E8]/30 flex items-center justify-center text-[#00A3E8] group-hover:scale-110 group-hover:bg-[#00A3E8] group-hover:text-white transition-all shadow-xs flex-shrink-0">
                   <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
@@ -143,8 +141,8 @@ function ContactSection({ t, lang }) {
               </a>
 
               {/* Address */}
-              <div className="bg-white/95 backdrop-blur-sm p-5 sm:p-6 rounded-3xl border border-slate-200/90 flex items-center gap-4 shadow-[0_8px_25px_rgba(147,51,234,0.06)] h-full sm:h-auto">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-600 flex-shrink-0 shadow-xs">
+              <div className="bg-white/95 backdrop-blur-sm p-5 sm:p-6 rounded-3xl border border-slate-200/90 flex items-center gap-4 hover:border-[#00A3E8] shadow-[0_8px_25px_rgba(0,163,232,0.06)] hover:shadow-[0_15px_30px_rgba(0,163,232,0.18)] hover:-translate-y-1 transition-all group h-full sm:h-auto">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#00A3E8]/10 border border-[#00A3E8]/30 flex items-center justify-center text-[#00A3E8] group-hover:scale-110 group-hover:bg-[#00A3E8] group-hover:text-white transition-all shadow-xs flex-shrink-0">
                   <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>

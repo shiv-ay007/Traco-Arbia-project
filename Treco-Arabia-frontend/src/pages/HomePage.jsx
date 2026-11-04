@@ -1,6 +1,7 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import AboutSection from '../components/AboutSection';
+import Hero from '../components/home/Hero';
+import AboutSection from '../components/home/AboutSection';
+import WhatWeOfferSection from '../components/home/WhatWeOfferSection';
 import IoTPoweredOperations from '../components/home/IoTPoweredOperations';
 import IndustrialSolutionsGrid from '../components/home/IndustrialSolutionsGrid';
 import OurNumbersStory from '../components/home/OurNumbersStory';
@@ -20,27 +21,28 @@ function HomePage({ t, lang, onOpenQuote }) {
       {/* 2. Visual & Minimalistic About Section */}
       <AboutSection lang={lang} onOpenQuote={onOpenQuote} />
 
-      {/* 6. Syncrow IoT Products & App Showcase (4-Screen Parallax Wave & 6 Categories) */}
+      {/* 2.5 What We Offer (Minimal High-Tech Automation Grid) */}
+      <WhatWeOfferSection lang={lang} onOpenQuote={onOpenQuote} />
+
+      {/* 3. Syncrow IoT Products & App Showcase (4-Screen Parallax Wave & 6 Categories) */}
       <SyncrowProductsShowcase lang={lang} onOpenQuote={onOpenQuote} />
 
-
-      {/* 3. IoT-Powered Automation for Smarter Operations (Syncrow Photo 3) */}
+      {/* 4. IoT-Powered Automation for Smarter Operations */}
       <IoTPoweredOperations lang={lang} />
 
-      {/* 4. Visual Industrial Solutions Section (Asymmetric Editorial Grid) */}
+      {/* 5. Visual Industrial Solutions Section (Asymmetric Editorial Grid) */}
       <IndustrialSolutionsGrid t={t} lang={lang} />
 
-      {/* 5. Our Numbers Tell the Story with 3D Globe Mesh (Syncrow Photo 2) */}
+      {/* 6. Our Numbers Tell the Story with 3D Globe Mesh */}
       <OurNumbersStory lang={lang} />
 
-      
       {/* 7. Industrial Showcase & Equipment Gallery */}
       <IndustrialShowcase t={t} lang={lang} />
 
       {/* 8. Engineering Standards, SASO/IEC Compliance & Trust Section */}
       <EngineeringStandards t={t} lang={lang} />
 
-      {/* 9. Smart Home Division (Saudi benchmark by sector & 4-step process) */}
+      {/* 9. Smart Home Division */}
       <SmartHomeSecondary t={t} lang={lang} onOpenQuote={onOpenQuote} />
 
       {/* 10. Frequently Asked Questions & ISO 9001:2015 Certification */}

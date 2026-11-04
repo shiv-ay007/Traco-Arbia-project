@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Cpu, Phone, Mail, MapPin, ChevronRight } from "lucide-react";
 import ccLogo from "../assets/cc-logo.png";
 
-function Footer({ t, lang }) {
+export function Footer({ t, lang }) {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };

@@ -2,7 +2,7 @@ export const translations = {
   en: {
     nav: {
       home: "Home",
-      smartHome: "Smart Home",
+      smartHome: "Home Automation",
       offerings: "What We Offer",
       industrial: "Industrial Automation",
       gallery: "Gallery",
@@ -273,7 +273,7 @@ export const translations = {
   ar: {
     nav: {
       home: "الرئيسية",
-      smartHome: "المنزل الذكي",
+      smartHome: "أتمتة المنازل",
       offerings: "خدماتنا",
       industrial: "الأتمتة الصناعية",
       gallery: "معرض الصور",

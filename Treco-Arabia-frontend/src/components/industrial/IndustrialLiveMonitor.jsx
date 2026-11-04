@@ -3,17 +3,15 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Cpu, Zap } from 'lucide-react';
 
-export default function IndustrialVisualShowcase({ lang = 'en' }) {
+export default function IndustrialLiveMonitor({ lang = 'en' }) {
   const isArabic = lang === 'ar';
 
-  // NOTE: Yahan aap apni generated images ke paths daal dena
-  // import img1 from '../assets/industrial/panel.jpg'; etc.
   const visuals = [
     {
       id: 1,
       title: isArabic ? 'لوحات التحكم MCC' : 'Custom MCC Panels',
       desc: isArabic ? 'تصميم وتجميع لوحات جهد منخفض مطابقة لمعايير SASO.' : 'Desert-rated low-voltage switchgear built to SASO specs.',
-      image: 'YOUR_IMAGE_1_PATH',
+      image: '/industrial/panel.jpg',
       icon: Cpu,
       colSpan: 'lg:col-span-7',
       height: 'h-[400px] sm:h-[500px]'
@@ -22,7 +20,7 @@ export default function IndustrialVisualShowcase({ lang = 'en' }) {
       id: 2,
       title: isArabic ? 'غرف التحكم SCADA' : 'Live SCADA Rooms',
       desc: isArabic ? 'مراقبة لحظية لخطوط الإنتاج بالكامل.' : 'Real-time plant telemetry and centralized supervision.',
-      image: 'YOUR_IMAGE_2_PATH',
+      image: '/industrial/scada.jpg',
       icon: Zap,
       colSpan: 'lg:col-span-5',
       height: 'h-[400px] sm:h-[500px]'
@@ -31,7 +29,7 @@ export default function IndustrialVisualShowcase({ lang = 'en' }) {
       id: 3,
       title: isArabic ? 'برمجة أتمتة PLC' : 'PLC & Robotics Engineering',
       desc: isArabic ? 'برمجة منطقية دقيقة لخطوط الإنتاج الروبوتية.' : 'Deterministic automation for robotic assembly lines.',
-      image: 'YOUR_IMAGE_3_PATH',
+      image: '/industrial/robotics.jpg',
       icon: ShieldCheck,
       colSpan: 'lg:col-span-12',
       height: 'h-[300px] sm:h-[400px]'
@@ -40,13 +38,9 @@ export default function IndustrialVisualShowcase({ lang = 'en' }) {
 
   return (
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden border-b border-slate-200">
-      
-      {/* Background Glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00A3E8]/5 blur-[120px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-[#00A3E8]/30 text-[#00A3E8] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-4 shadow-sm">
@@ -67,7 +61,6 @@ export default function IndustrialVisualShowcase({ lang = 'en' }) {
           </Link>
         </div>
 
-        {/* Bento Grid Layout for Visuals */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
           {visuals.map((item, idx) => {
             const Icon = item.icon;
@@ -80,7 +73,6 @@ export default function IndustrialVisualShowcase({ lang = 'en' }) {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className={`relative rounded-3xl overflow-hidden group cursor-pointer ${item.colSpan} ${item.height} border border-slate-200 shadow-sm`}
               >
-                {/* Background Image */}
                 <img 
                   src={item.image} 
                   alt={item.title}
@@ -88,10 +80,8 @@ export default function IndustrialVisualShowcase({ lang = 'en' }) {
                   style={{ filter: 'brightness(0.65)' }}
                 />
                 
-                {/* Gradient Overlay for Text Readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent opacity-90" />
 
-                {/* Content */}
                 <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end">
                   <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-[#00A3E8] mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <Icon className="w-6 h-6" />
@@ -106,7 +96,6 @@ export default function IndustrialVisualShowcase({ lang = 'en' }) {
                   </p>
                 </div>
 
-                {/* Top Right Arrow Indicator */}
                 <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
                   <ArrowRight className="w-5 h-5 -rotate-45" />
                 </div>

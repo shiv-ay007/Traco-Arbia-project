@@ -1,7 +1,7 @@
 import React from 'react';
 import { MessageCircle, Phone, ChevronUp } from 'lucide-react';
 
-function FloatingWhatsApp({ lang }) {
+export function FloatingWhatsApp({ lang }) {
   const whatsappUrl = "https://wa.me/966500761791?text=" + encodeURIComponent("Hello Treco Arabia! I would like to inquire about Smart Home & Industrial Automation solutions.");
 
   const scrollToTop = () => {

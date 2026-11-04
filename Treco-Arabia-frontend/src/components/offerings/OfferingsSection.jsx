@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, ArrowUpRight, ArrowLeft, ArrowRight, Smartphone } from 'lucide-react';
 
-import imgLighting from '../assets/offerings_products/smart_lighting.jpg';
-import imgThermostat from '../assets/offerings_products/smart_ac.jpg';
-import imgHvac from '../assets/offerings_products/central_hvac.jpg';
-import imgCurtains from '../assets/offerings_products/motorized_curtains.jpg';
-import imgLock from '../assets/offerings_products/biometric_lock.jpg';
-import imgCctv from '../assets/offerings_products/cctv_camera.jpg';
-import imgDoorbell from '../assets/offerings_products/smart_doorbell.jpg';
-import imgSpeakers from '../assets/offerings_products/smart_speakers.jpg';
+import imgLighting from '../../assets/offerings_products/smart_lighting.jpg';
+import imgThermostat from '../../assets/offerings_products/smart_ac.jpg';
+import imgHvac from '../../assets/offerings_products/central_hvac.jpg';
+import imgCurtains from '../../assets/offerings_products/motorized_curtains.jpg';
+import imgLock from '../../assets/offerings_products/biometric_lock.jpg';
+import imgCctv from '../../assets/offerings_products/cctv_camera.jpg';
+import imgDoorbell from '../../assets/offerings_products/smart_doorbell.jpg';
+import imgSpeakers from '../../assets/offerings_products/smart_speakers.jpg';
 
 function OfferingsSection({ lang = 'en', onOpenQuote }) {
   const isArabic = lang === 'ar';
@@ -114,7 +114,7 @@ function OfferingsSection({ lang = 'en', onOpenQuote }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header: Minimal & Compact */}
+        {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8 sm:mb-10">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-[#00A3E8]/30 text-[#00A3E8] font-bold text-[10px] sm:text-xs uppercase tracking-wider mb-2.5 shadow-2xs">
@@ -172,7 +172,6 @@ function OfferingsSection({ lang = 'en', onOpenQuote }) {
               to={item.link}
               className="group bg-white/95 rounded-2xl overflow-hidden border border-slate-200/90 hover:border-[#00A3E8]/60 shadow-[0_4px_16px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(0,163,232,0.14)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
-              {/* Product Photo Container */}
               <div className="relative aspect-[16/11] w-full overflow-hidden bg-slate-100">
                 <img
                   src={item.image}
@@ -181,7 +180,6 @@ function OfferingsSection({ lang = 'en', onOpenQuote }) {
                   loading="lazy"
                 />
 
-                {/* Top Overlay Action Arrow (Badge Removed) */}
                 <div className="absolute top-2.5 right-2.5 flex items-center justify-end pointer-events-none">
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-md text-slate-800 flex items-center justify-center shadow-xs group-hover:bg-[#00A3E8] group-hover:text-white transition-all duration-200">
                     <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -189,14 +187,12 @@ function OfferingsSection({ lang = 'en', onOpenQuote }) {
                 </div>
               </div>
 
-              {/* Minimal Caption Area (Compact & Clean) */}
               <div className="p-3 sm:p-3.5 flex items-center justify-between flex-grow">
                 <h3 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#00A3E8] transition-colors leading-snug line-clamp-1">
                   {isArabic ? item.titleAr : item.titleEn}
                 </h3>
               </div>
 
-              {/* Bottom Subtle Shimmer Line */}
               <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[#00A3E8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>
           ))}

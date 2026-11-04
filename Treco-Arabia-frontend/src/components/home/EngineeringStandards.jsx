@@ -185,14 +185,14 @@ function EngineeringStandards({ t, lang }) {
               <span>{content.eyebrow}</span>
             </div>
             
-            <h2 className="text-xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+            <h2 className="font-extrabold tracking-tight leading-tight text-[#1F1F1F]">
               <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
                 {content.title}
               </span>
             </h2>
 
             {/* Subtitle Hidden on Mobile */}
-            <p className="hidden sm:block mt-2 sm:mt-3 text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+            <p className="section-p mt-2 sm:mt-3 text-base text-[#1F1F1F] font-normal leading-relaxed">
               {content.subtitle}
             </p>
           </div>
