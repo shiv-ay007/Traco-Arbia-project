@@ -15,6 +15,7 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import newLogo from "../assets/newlogo.png";
+import logoWhite from "../assets/logo-white.png";
 import { industrialNavigationCategories } from "../data/industrialProductsData";
 import { homeNavigationCategories } from "../data/homeAutomationData";
 
@@ -24,12 +25,24 @@ export function Header({ lang, setLang, t }) {
   const [mobileIndustrialOpen, setMobileIndustrialOpen] = useState(false);
   const [homeMenuOpen, setHomeMenuOpen] = useState(false);
   const [mobileHomeOpen, setMobileHomeOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const drawerRef = useRef(null);
   const menuButtonRef = useRef(null);
 
   const isContactPage = location.pathname === "/contact";
+  const isHomeHero = location.pathname === "/";
+  const isTransparent = isHomeHero && !isScrolled;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     setIndustrialMenuOpen(false);
@@ -145,8 +158,14 @@ export function Header({ lang, setLang, t }) {
   }, [mobileMenu]);
 
   return (
-    // Clean White Background, Dark Text (ABB Style)
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 text-gray-900 transition-all shadow-sm">
+    // Dynamic Transparent on Home Hero, Animated Solid on Scroll
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+        isTransparent
+          ? "bg-gradient-to-b from-black/80 via-black/40 to-transparent border-b border-transparent text-white"
+          : "bg-white/95 backdrop-blur-md border-b border-gray-200 text-gray-900 shadow-sm"
+      }`}
+    >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           
@@ -159,14 +178,14 @@ export function Header({ lang, setLang, t }) {
               className="flex items-center group cursor-pointer focus:outline-none"
             >
               <img
-                src={newLogo}
+                src={isTransparent ? logoWhite : newLogo}
                 alt="Treco Arabia"
-                className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-10 md:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105"
               />
             </Link>
 
             {/* Vertical Divider */}
-            <div className="hidden md:block w-px h-6 bg-gray-300"></div>
+            <div className={`hidden md:block w-px h-6 transition-colors duration-300 ${isTransparent ? 'bg-white/20' : 'bg-gray-300'}`}></div>
 
             {/* Desktop Nav Links */}
             <div className="hidden md:flex items-center gap-1 lg:gap-2 h-full">
@@ -191,11 +210,19 @@ export function Header({ lang, setLang, t }) {
                         className={`px-3.5 py-2 text-[15px] lg:text-base font-semibold tracking-normal transition-colors relative cursor-pointer flex items-center gap-1.5 ${
                           isActive
                             ? "text-[#00A3E8] font-bold"
+                            : isTransparent
+                            ? "text-white/90 hover:text-[#00A3E8]"
                             : "text-gray-800 hover:text-[#00A3E8]"
                         }`}
                       >
                         <span>{link.label}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${industrialMenuOpen ? 'rotate-180 text-[#00A3E8]' : 'text-gray-400'}`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
+                          industrialMenuOpen
+                            ? 'rotate-180 text-[#00A3E8]'
+                            : isTransparent
+                            ? 'text-white/70'
+                            : 'text-gray-400'
+                        }`} />
                         {isActive && (
                           <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#00A3E8] rounded-t-md" />
                         )}
@@ -244,11 +271,19 @@ export function Header({ lang, setLang, t }) {
                         className={`px-3.5 py-2 text-[15px] lg:text-base font-semibold tracking-normal transition-colors relative cursor-pointer flex items-center gap-1.5 ${
                           isActive
                             ? "text-[#00A3E8] font-bold"
+                            : isTransparent
+                            ? "text-white/90 hover:text-[#00A3E8]"
                             : "text-gray-800 hover:text-[#00A3E8]"
                         }`}
                       >
                         <span>{link.label}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${homeMenuOpen ? 'rotate-180 text-[#00A3E8]' : 'text-gray-400'}`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
+                          homeMenuOpen
+                            ? 'rotate-180 text-[#00A3E8]'
+                            : isTransparent
+                            ? 'text-white/70'
+                            : 'text-gray-400'
+                        }`} />
                         {isActive && (
                           <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#00A3E8] rounded-t-md" />
                         )}
@@ -290,6 +325,8 @@ export function Header({ lang, setLang, t }) {
                     className={`px-3.5 py-2 text-[15px] lg:text-base font-semibold tracking-normal transition-colors relative cursor-pointer ${
                       isActive
                         ? "text-[#00A3E8] font-bold"
+                        : isTransparent
+                        ? "text-white/90 hover:text-[#00A3E8]"
                         : "text-gray-800 hover:text-[#00A3E8]"
                     }`}
                   >
@@ -311,12 +348,18 @@ export function Header({ lang, setLang, t }) {
                 value={lang}
                 onChange={(e) => handleLanguageChange(e.target.value)}
                 aria-label="Select Language"
-                className="w-44 py-2 pl-10 pr-9 rtl:pr-10 rtl:pl-9 rounded-full border border-gray-300 hover:border-[#00A3E8] focus:border-[#00A3E8] focus:ring-2 focus:ring-[#00A3E8]/20 bg-white text-gray-800 text-xs font-bold transition-all shadow-xs appearance-none cursor-pointer focus:outline-none"
+                className={`w-44 py-2 pl-10 pr-9 rtl:pr-10 rtl:pl-9 rounded-full border text-xs font-bold transition-all shadow-xs appearance-none cursor-pointer focus:outline-none ${
+                  isTransparent
+                    ? "bg-black/35 backdrop-blur-md border-white/25 text-white hover:border-[#00A3E8] focus:border-[#00A3E8]"
+                    : "bg-white border-gray-300 text-gray-800 hover:border-[#00A3E8] focus:border-[#00A3E8]"
+                }`}
               >
-                <option value="en">English (EN)</option>
-                <option value="ar">العربية (AR)</option>
+                <option value="en" className="bg-slate-900 text-white">English (EN)</option>
+                <option value="ar" className="bg-slate-900 text-white">العربية (AR)</option>
               </select>
-              <ChevronDown className="w-4 h-4 text-gray-500 absolute right-3 pointer-events-none z-10 rtl:right-auto rtl:left-3" />
+              <ChevronDown className={`w-4 h-4 absolute right-3 pointer-events-none z-10 rtl:right-auto rtl:left-3 transition-colors ${
+                isTransparent ? 'text-white/70' : 'text-gray-500'
+              }`} />
             </div>
           </div>
 
@@ -328,19 +371,27 @@ export function Header({ lang, setLang, t }) {
                 value={lang}
                 onChange={(e) => handleLanguageChange(e.target.value)}
                 aria-label="Select Language"
-                className="w-32 py-1.5 pl-7 pr-6 rtl:pr-7 rtl:pl-6 rounded-full border border-gray-300 hover:border-[#00A3E8] focus:border-[#00A3E8] bg-white text-gray-800 text-[11px] font-bold shadow-xs appearance-none cursor-pointer focus:outline-none"
+                className={`w-32 py-1.5 pl-7 pr-6 rtl:pr-7 rtl:pl-6 rounded-full border text-[11px] font-bold shadow-xs appearance-none cursor-pointer focus:outline-none ${
+                  isTransparent
+                    ? "bg-black/35 backdrop-blur-md border-white/25 text-white"
+                    : "bg-white border-gray-300 text-gray-800"
+                }`}
               >
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
+                <option value="en" className="bg-slate-900 text-white">English</option>
+                <option value="ar" className="bg-slate-900 text-white">العربية</option>
               </select>
-              <ChevronDown className="w-3.5 h-3.5 text-gray-500 absolute right-2 pointer-events-none z-10 rtl:right-auto rtl:left-2" />
+              <ChevronDown className={`w-3.5 h-3.5 absolute right-2 pointer-events-none z-10 rtl:right-auto rtl:left-2 ${
+                isTransparent ? 'text-white/70' : 'text-gray-500'
+              }`} />
             </div>
 
             <button
               ref={menuButtonRef}
               onClick={() => setMobileMenu((prev) => !prev)}
               aria-label={mobileMenu ? "Close menu" : "Open menu"}
-              className="p-1.5 text-gray-800 hover:text-[#00A3E8] focus:outline-none cursor-pointer"
+              className={`p-1.5 focus:outline-none cursor-pointer transition-colors ${
+                isTransparent ? "text-white hover:text-[#00A3E8]" : "text-gray-800 hover:text-[#00A3E8]"
+              }`}
             >
               {mobileMenu ? (
                 <X className="w-6 h-6 text-[#00A3E8]" />
