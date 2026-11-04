@@ -13,7 +13,7 @@ export function OfferingsHero({ t, lang }) {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Breadcrumbs - Hidden on Mobile */}
         <div className="hidden sm:flex items-center justify-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-widest mb-4 drop-shadow-md">
           <Link to="/" className="hover:text-[#00A3E8] transition-colors">

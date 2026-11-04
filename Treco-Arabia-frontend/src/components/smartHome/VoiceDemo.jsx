@@ -81,7 +81,7 @@ function VoiceDemo({ t, lang = 'en' }) {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Solution Card with Frosted Glass & Cyan Glow */}
         <div className="bg-white/95 backdrop-blur-xl p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_15px_40px_-10px_rgba(0,163,232,0.12),0_8px_20px_-5px_rgba(15,23,42,0.05)] grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center relative overflow-hidden">

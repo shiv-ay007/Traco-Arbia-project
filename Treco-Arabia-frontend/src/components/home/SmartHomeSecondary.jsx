@@ -116,7 +116,7 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
   const currentSector = sectors[activeTab];
 
   return (
-    <section className="pt-20 sm:pt-24 pb-16 sm:pb-24 text-slate-900 border-b border-slate-200 relative overflow-hidden bg-gradient-to-b from-white via-[#F8FBFF] to-[#EFF6FF]">
+    <section className="py-16 sm:py-24 text-slate-900 border-t border-b border-slate-300 relative overflow-hidden bg-white">
       
       {/* Background Ambience Layers */}
       <div 
@@ -126,45 +126,24 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
           backgroundSize: '36px 36px'
         }}
       />
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-[#00A3E8]/10 to-transparent blur-[160px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-tl from-indigo-500/10 to-transparent blur-[160px] pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-[#00A3E8]/10 to-transparent blur-[160px] pointer-events-none rounded-none" />
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-tl from-indigo-500/10 to-transparent blur-[160px] pointer-events-none rounded-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00A3E8]/40 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ============================================================ */}
-        {/* SECTION HEADER: Smarta Saudi Vision 2030 Benchmark Style    */}
+        {/* ONLY THE NORMAL MINIMAL HEADING                              */}
         {/* ============================================================ */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#00A3E8]/30 text-[#00A3E8] text-xs font-black uppercase tracking-wider shadow-xs mb-4">
-            <Sparkles className="w-3.5 h-3.5 flex-shrink-0" />
-            <span>{isArabic ? 'حلول المنازل والمنشآت الذكية بالسعودية' : 'Smart Home & Building Automation in Saudi Arabia'}</span>
-          </div>
-
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-1">
-            {isArabic ? (
-              <>
-                أنظمة أتمتة متكاملة تواكب <span className="text-[#00A3E8]">رؤية السعودية ٢٠٣٠</span>
-              </>
-            ) : (
-              <>
-                Integrated Smart Systems Driving <span className="text-[#00A3E8]">Saudi Vision 2030</span>
-              </>
-            )}
+        <div className="mb-8 sm:mb-10 text-left rtl:text-right">
+          <h2
+            className="text-2xl sm:text-3xl font-black text-[#1F1F1F] tracking-tight uppercase"
+            style={{ color: '#1F1F1F' }}
+          >
+            {isArabic ? 'حلول المنازل والمنشآت الذكية' : 'SMART LIVING & BUILDING AUTOMATION'}
           </h2>
-
-          <p className="text-xs sm:text-base text-slate-600 font-normal leading-relaxed">
-            {isArabic
-              ? 'نحول الفلل والقصور والمنشآت التجارية إلى بيئات ذكية بالكامل توفر أقصى درجات الراحة والأمان وترشيد الطاقة بأعلى معايير الجودة العالمية.'
-              : 'Transforming luxury residences, residential compounds, and commercial buildings into intelligent spaces maximizing comfort, security, and energy efficiency.'}
-          </p>
-
-              
-
         </div>
-
-        {/* ============================================================ */}
+{/* ============================================================ */}
         {/* SECTOR SWITCHER TABS (4 Pillars)                             */}
         {/* ============================================================ */}
         <div className="flex items-center justify-start sm:justify-center gap-5 overflow-x-auto pb-1 mb-8 no-scrollbar">
@@ -176,7 +155,7 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
                 key={sec.id}
                 type="button"
                 onClick={() => setActiveTab(idx)}
-                className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap border ${
+                className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-none text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap border ${
                   isActive
                     ? 'bg-[#00A3E8] text-white border-[#00A3E8] shadow-[0_4px_20px_rgba(0,163,232,0.35)] scale-[1.02]'
                     : 'bg-white/90 text-slate-700 border-slate-200 hover:bg-slate-50 hover:border-slate-300 shadow-xs'
@@ -192,7 +171,7 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
         {/* ============================================================ */}
         {/* INTERACTIVE SHOWCASE CARD: SLIDE-IN FROM RIGHT EFFECT        */}
         {/* ============================================================ */}
-        <div className="rounded-3xl border border-slate-200 bg-white/95 backdrop-blur-md shadow-[0_20px_60px_rgba(15,23,42,0.08),0_0_40px_rgba(0,163,232,0.06)] overflow-hidden">
+        <div className="rounded-none border border-slate-200 bg-white/95 backdrop-blur-md shadow-[0_20px_60px_rgba(15,23,42,0.08),0_0_40px_rgba(0,163,232,0.06)] overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[460px]">
             
             {/* Left Content Area (7 Cols) */}
@@ -200,8 +179,8 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
               <div>
                 
                 {/* Sector Eyebrow */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A3E8]/10 border border-[#00A3E8]/25 text-[#00A3E8] text-[11px] font-black uppercase tracking-wider mb-4">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E8] animate-pulse" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-[#00A3E8]/10 border border-[#00A3E8]/25 text-[#00A3E8] text-[11px] font-black uppercase tracking-wider mb-4">
+                  <span className="w-1.5 h-1.5 rounded-none bg-[#00A3E8] animate-pulse" />
                   <span>{currentSector.badge}</span>
                 </div>
 
@@ -220,7 +199,7 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
                   {currentSector.highlights.map((h, i) => (
                     <div 
                       key={i}
-                      className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50/80 border border-slate-100 hover:border-[#00A3E8]/40 hover:bg-sky-50/40 transition-colors"
+                      className="flex items-center gap-2 p-2.5 rounded-none bg-slate-50/80 border border-slate-100 hover:border-[#00A3E8]/40 hover:bg-sky-50/40 transition-colors"
                     >
                       <CheckCircle2 className="w-4 h-4 text-[#00A3E8] flex-shrink-0" />
                       <span className="text-xs font-semibold text-slate-800 leading-tight">{h}</span>
@@ -234,7 +213,7 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
               <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#00A3E8]/15 border border-[#00A3E8]/30 flex items-center justify-center text-[#00A3E8] font-black text-sm">
+                  <div className="w-10 h-10 rounded-none bg-[#00A3E8]/15 border border-[#00A3E8]/30 flex items-center justify-center text-[#00A3E8] font-black text-sm">
                     {currentSector.statNum}
                   </div>
                   <div>
@@ -250,7 +229,7 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
                     <button
                       type="button"
                       onClick={onOpenQuote}
-                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#00A3E8] hover:bg-cyan-500 text-white font-black text-xs shadow-md transition-all cursor-pointer"
+                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-none bg-[#00A3E8] hover:bg-cyan-500 text-white font-black text-xs shadow-md transition-all cursor-pointer"
                     >
                       <PhoneCall className="w-3.5 h-3.5" />
                       <span>{isArabic ? 'احجز استشارة' : 'Book Consultation'}</span>
@@ -259,7 +238,7 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
 
                   <Link
                     to="/smart-home"
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-none bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors"
                   >
                     <span>{isArabic ? 'التفاصيل' : 'Explore'}</span>
                     <ArrowRight className={`w-3.5 h-3.5 ${isArabic ? 'rotate-180' : ''}`} />
@@ -291,8 +270,8 @@ function SmartHomeSecondary({ t, lang = 'en', onOpenQuote }) {
 
                   {/* Floating Live Indicator Badge */}
                   <div className="absolute top-4 right-4 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold shadow-lg">
-                      <span className="w-2 h-2 rounded-full bg-[#00A3E8] animate-ping" />
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-none bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold shadow-lg">
+                      <span className="w-2 h-2 rounded-none bg-[#00A3E8] animate-ping" />
                       <span>{isArabic ? 'عرض حي' : 'Interactive Preview'}</span>
                     </span>
                   </div>

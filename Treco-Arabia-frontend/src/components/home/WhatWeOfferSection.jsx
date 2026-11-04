@@ -66,7 +66,7 @@ export function WhatWeOfferSection({ lang = 'en' }) {
       dir={isArabic ? 'rtl' : 'ltr'}
       className="dark-section relative bg-[#18191D] text-white py-16 sm:py-20 md:py-24 border-t border-b border-white/[0.04]"
     >
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ONLY THE HEADING: Clean, Minimal, 100% Crisp White */}
         <div className="mb-8 sm:mb-10 text-left rtl:text-right">
@@ -92,7 +92,7 @@ export function WhatWeOfferSection({ lang = 'en' }) {
               >
                 <Link
                   to={item.link}
-                  className="group relative flex flex-col items-center justify-center p-4 sm:p-5 min-h-[115px] sm:min-h-[125px] rounded-xl sm:rounded-2xl bg-[#212328] hover:bg-[#282B32] border border-white/[0.05] hover:border-[#00A3E8]/50 transition-all duration-300 shadow-sm hover:shadow-[0_6px_24px_rgba(0,163,232,0.12)] hover:-translate-y-1 text-center"
+                  className="group relative flex flex-col items-center justify-center p-4 sm:p-5 min-h-[115px] sm:min-h-[125px] rounded-none bg-[#212328] hover:bg-[#282B32] border border-white/[0.08] hover:border-[#00A3E8]/60 transition-all duration-300 shadow-sm hover:shadow-[0_6px_24px_rgba(0,163,232,0.12)] hover:-translate-y-1 text-center"
                 >
                   {/* Clean Centered Icon */}
                   <div className="w-8 h-8 flex items-center justify-center text-gray-300 group-hover:text-[#00A3E8] transition-colors duration-300 mb-2.5">

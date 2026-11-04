@@ -8,7 +8,7 @@ export function ContactMapSection({ lang }) {
       <div className="absolute top-10 left-10 w-[500px] h-[300px] bg-[#00A3E8]/10 blur-[130px] pointer-events-none rounded-full" />
       <div className="absolute bottom-10 right-10 w-[600px] h-[350px] bg-sky-400/10 blur-[130px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Card above Map */}
         <div className="bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-t-3xl border border-b-0 border-slate-200/90 shadow-[0_10px_30px_rgba(0,163,232,0.06)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden group">

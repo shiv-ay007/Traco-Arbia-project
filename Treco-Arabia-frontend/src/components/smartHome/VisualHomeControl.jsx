@@ -27,7 +27,7 @@ export default function VisualHomeControl({ lang = 'en' }) {
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#00A3E8]/10 blur-[120px] pointer-events-none rounded-full" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-500/10 blur-[120px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">

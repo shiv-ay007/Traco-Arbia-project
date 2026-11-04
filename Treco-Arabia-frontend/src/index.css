@@ -90,8 +90,8 @@ h2, .section-heading {
   line-height: 1.2 !important;
 }
 
-/* Support dark sections without being overridden by #1F1F1F */
-.dark-section, [data-theme="dark"] {
+/* Support dark sections and footer without being overridden by #1F1F1F */
+.dark-section, [data-theme="dark"], footer {
   color: #FFFFFF !important;
 }
 
@@ -99,14 +99,29 @@ h2, .section-heading {
 .dark-section h2,
 .dark-section h3,
 .dark-section h4,
-.dark-section .section-heading {
+.dark-section .section-heading,
+footer h1,
+footer h2,
+footer h3,
+footer h4 {
   color: #FFFFFF !important;
   -webkit-text-fill-color: #FFFFFF !important;
 }
 
+.dark-section h2 span.text-cyan,
+.dark-section h2 span[data-cyan],
+.dark-section span[style*="00A3E8"],
+footer span.text-cyan,
+footer span[style*="00A3E8"] {
+  color: #00A3E8 !important;
+  -webkit-text-fill-color: #00A3E8 !important;
+}
+
 .dark-section p,
-.dark-section .section-p {
+.dark-section .section-p,
+footer p {
   color: #CBD5E1 !important;
+  -webkit-text-fill-color: #CBD5E1 !important;
 }
 
 /* Remove gradient text-clipping on h2 spans so they render solid #1F1F1F */

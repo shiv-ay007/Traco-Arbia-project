@@ -1,235 +1,168 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-import globeMesh from '../../assets/syncrow/globe_mesh.webp';
+import { motion, useInView, animate } from 'framer-motion';
+import { Cpu, Zap, Layers, Package, Users, MapPin } from 'lucide-react';
+import imgVision2030 from '../../assets/standards/standards_vision2030.jpg';
 
-// Counting Animation Hook
-const useCountUp = (end, duration = 2000, start = false, isArabic = false) => {
-  const [count, setCount] = useState(0);
+// Smooth 60fps Counting Component
+function AnimatedNumber({ value, isInView }) {
+  const [display, setDisplay] = useState('0');
+  const numericString = value.replace(/[^0-9]/g, '');
+  const suffix = value.replace(/[0-9,]/g, '');
+  const target = parseInt(numericString, 10) || 0;
 
   useEffect(() => {
-    if (!start) return;
+    if (!isInView) return;
 
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      
-      const easeOutProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      
-      setCount(Math.floor(easeOutProgress * end));
+    const controls = animate(0, target, {
+      duration: 2.2,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate(latest) {
+        setDisplay(Math.floor(latest).toLocaleString('en-US'));
+      },
+    });
 
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-    window.requestAnimationFrame(step);
-  }, [end, duration, start]);
-
-  return count.toLocaleString(isArabic ? 'ar-EG' : 'en-US');
-};
-
-// Number card component
-const MetricCard = ({ numStr, label, idx, isArabic, isInView }) => {
-  const numericString = numStr.replace(/[^0-9]/g, '');
-  const suffix = numStr.replace(/[0-9,]/g, '');
-  const targetNumber = parseInt(numericString, 10) || 0;
-  
-  const displayNum = useCountUp(targetNumber, 2000, isInView, isArabic);
+    return () => controls.stop();
+  }, [isInView, target]);
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: idx * 0.1 }}
-      className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-[#00A3E8] hover:shadow-md transition-all flex flex-row sm:flex-col items-center sm:items-start gap-3 sm:gap-0 h-full justify-center"
-    >
-      <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#00A3E8] tracking-tight leading-none sm:mb-2 font-mono drop-shadow-xs min-w-[70px] sm:min-w-0">
-        {displayNum}{suffix}
-      </div>
-      <div className="text-[11px] sm:text-sm text-slate-600 font-medium leading-snug">
-        {label}
-      </div>
-    </motion.div>
+    <span>
+      {display}
+      {suffix}
+    </span>
   );
-};
+}
 
-function OurNumbersStory({ lang = 'en' }) {
+export function OurNumbersStory({ lang = 'en' }) {
   const isArabic = lang === 'ar';
   const metricsRef = useRef(null);
-  
-  const isInView = useInView(metricsRef, { once: true, margin: "-100px" });
+  const isInView = useInView(metricsRef, { once: true, margin: '-40px' });
 
-  const rows = [
-    [
-      {
-        num: '7,000+',
-        label: isArabic ? 'أجهزة ذكية متصلة ونشطة' : 'Active Smart Devices',
-      },
-      {
-        num: '300+',
-        label: isArabic ? 'وحدات ومباني مؤتمتة' : 'Units Powered by Treco Arabia',
-      },
-      {
-        num: '200+',
-        label: isArabic ? 'مشاريع قيد التنفيذ بالمملكة' : 'Ongoing Projects',
-      },
-    ],
-    [
-      {
-        num: '60+',
-        label: isArabic ? 'نوع من أجهزة إنترنت الأشياء والتحكم' : 'Types of IoT & Industrial Devices',
-      },
-      {
-        num: '50+',
-        label: isArabic ? 'مهندسون وفنيون متخصصون' : 'Certified Team Members',
-      },
-      {
-        num: '3',
-        label: isArabic ? 'فروع: جدة، الرياض، الدمام' : 'Offices: Jeddah, Riyadh, Dammam',
-      },
-    ],
+  const metrics = [
+    {
+      id: 'devices',
+      num: '7,000+',
+      label: isArabic ? 'أجهزة ذكية متصلة' : 'Active Smart Devices',
+      icon: Cpu,
+    },
+    {
+      id: 'units',
+      num: '300+',
+      label: isArabic ? 'وحدات ومباني مؤتمتة' : 'Units Powered by Treco Arabia',
+      icon: Zap,
+    },
+    {
+      id: 'projects',
+      num: '200+',
+      label: isArabic ? 'مشاريع قيد التنفيذ' : 'Ongoing Projects',
+      icon: Layers,
+    },
+    {
+      id: 'types',
+      num: '60+',
+      label: isArabic ? 'نوع من أجهزة الأتمتة' : 'Types of IoT & Industrial Devices',
+      icon: Package,
+    },
+    {
+      id: 'team',
+      num: '50+',
+      label: isArabic ? 'مهندسون وفنيون معتمدون' : 'Certified Team Members',
+      icon: Users,
+    },
+    {
+      id: 'offices',
+      num: '3',
+      label: isArabic ? 'فروع (جدة، الرياض، الدمام)' : 'Offices (Jeddah, Riyadh, Dammam)',
+      icon: MapPin,
+    },
   ];
 
   return (
-    <section className="pt-16 sm:pt-24 pb-12 sm:pb-24 bg-gradient-to-b from-white via-[#F8FBFE] to-[#EFF6FC] text-slate-900 relative overflow-hidden border-b border-slate-200">
-      
-      {/* Background Ambience Layers */}
-      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-[#00A3E8]/10 via-sky-400/5 to-transparent blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-blue-500/5 blur-[150px] pointer-events-none rounded-full" />
-
-      {/* Subtle Dot Grid Accent */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(#00A3E8 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      ref={metricsRef}
+      dir={isArabic ? 'rtl' : 'ltr'}
+      className="py-12 sm:py-16 bg-white text-slate-900 border-t border-b border-slate-200 relative overflow-hidden"
+    >
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* ===================== TOP HEADER ===================== */}
-        <div className="max-w-2xl mb-6 sm:mb-8">
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-[#00A3E8]/10 border border-[#00A3E8]/30 text-[#00A3E8] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-3 sm:mb-4 shadow-2xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E8] animate-pulse" />
-            <span>{isArabic ? 'إحصائيات وقدرات' : 'PROVEN TRACK RECORD'}</span>
-          </div>
-
-          <motion.h2 
-            initial={{ opacity: 0, x: isArabic ? 30 : -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-2 sm:mb-4"
-          >
-            {isArabic ? (
-              <>أرقامنا تروي <span className="text-[#00A3E8]">قصة إنجازاتنا</span></>
-            ) : (
-              <>Our Numbers <span className="text-[#00A3E8]">Tell the Story</span></>
-            )}
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, x: isArabic ? 30 : -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[11px] sm:text-base text-slate-600 font-normal leading-relaxed"
-          >
-            {isArabic
-              ? 'حلولنا تدير وتتحكم في آلاف المباني، المكاتب، والمصانع والفلل عبر منظومات ذكية متكاملة في المملكة العربية السعودية والخليج.'
-              : 'Our solutions power buildings, offices, and homes through thousands of devices across the KSA and GCC.'}
-          </motion.p>
-        </div>
-
-        {/* ===================== MAIN GRID: METRICS (LEFT) + 3D GLOBE (RIGHT) ===================== */}
-        {/* items-stretch lagaya hai taaki dono columns ki height 100% barabar ho */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        {/* ============================================================ */}
+        {/* CLEAN MINIMAL STRIP (NO BOXED DIV BACKGROUND / BORDER)       */}
+        {/* ============================================================ */}
+        <div className="w-full flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-10">
           
-          {/* LEFT 7 COLS: Metrics Grid */}
-          {/* flex-col justify-between lagaya hai taaki boxes barabar stretch hon */}
-          <div className="lg:col-span-7 flex flex-col justify-between h-full" ref={metricsRef}>
-            <div className="space-y-4 sm:space-y-8 h-full flex flex-col justify-between">
-              
-              {/* Row 1 */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-8 pb-4 sm:pb-8 border-b border-slate-200 h-full">
-                {rows[0].map((m, idx) => (
-                  <MetricCard 
-                    key={idx}
-                    numStr={m.num}
-                    label={m.label}
-                    idx={idx}
-                    isArabic={isArabic}
-                    isInView={isInView}
-                  />
-                ))}
-              </div>
+          {/* 1. LEFT MEDIA: Arch / Curved Saudi Landmark Frame */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="relative w-full sm:w-52 lg:w-60 h-36 sm:h-44 rounded-2xl lg:rounded-l-2xl lg:rounded-r-[70px] rtl:lg:rounded-r-2xl rtl:lg:rounded-l-[70px] overflow-hidden flex-shrink-0 shadow-sm border border-slate-200"
+          >
+            <img
+              src={imgVision2030}
+              alt="Saudi Industrial Vision"
+              className="w-full h-full object-cover"
+            />
+            {/* Soft Cyan Arc Highlight Ring */}
+            <div className="absolute inset-0 rounded-2xl lg:rounded-l-2xl lg:rounded-r-[70px] rtl:lg:rounded-r-2xl rtl:lg:rounded-l-[70px] ring-2 ring-[#00A3E8]/35 pointer-events-none" />
+          </motion.div>
 
-              {/* Row 2 */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-8 h-full">
-                {rows[1].map((m, idx) => (
-                  <MetricCard 
-                    key={idx}
-                    numStr={m.num}
-                    label={m.label}
-                    idx={idx + 3}
-                    isArabic={isArabic}
-                    isInView={isInView}
-                  />
-                ))}
-              </div>
-
-            </div>
-          </div>
-
-          {/* RIGHT 5 COLS: 3D Mesh Particle Globe */}
-          {/* items-stretch rakha hai taaki height left ke content se match kare */}
-          <div className="lg:col-span-5 relative flex items-stretch justify-center mt-2 lg:mt-0">
+          {/* 2. RIGHT CONTENT: Eyebrow + Title Divider + 6 Animated Metrics */}
+          <div className="flex-grow w-full flex flex-col justify-center">
             
-            {/* Ambient Radial Aura */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] sm:w-[460px] h-[250px] sm:h-[460px] rounded-full bg-[#00A3E8]/10 blur-[90px] pointer-events-none" />
+            {/* Minimal Blue Eyebrow */}
+            <span className="text-[10px] sm:text-xs font-bold text-[#00A3E8] tracking-widest uppercase mb-1">
+              {isArabic ? 'سجل إنجازات معتمد' : 'PROVEN TRACK RECORD'}
+            </span>
 
-            {/* Globe Card Container - h-full lagaya taaki exact match kare */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85, x: isArabic ? -40 : 40 }}
-              whileInView={{ opacity: 1, scale: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[420px] sm:max-w-[460px] h-full rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-950 via-[#0B1528] to-slate-900 p-4 sm:p-8 border border-slate-800 shadow-[0_20px_50px_-10px_rgba(0,163,232,0.25)] overflow-hidden flex items-center justify-center"
-            >
-              {/* Subtle tech grid background in card */}
-              <div 
-                className="absolute inset-0 opacity-10 pointer-events-none"
-                style={{
-                  backgroundImage: 'radial-gradient(#38BDF8 1px, transparent 1px)',
-                  backgroundSize: '20px 20px',
-                }}
-              />
+            {/* Title & Horizontal Accent Divider Line */}
+            <div className="flex items-center gap-4 mb-5 sm:mb-6">
+              <h3 className="text-xl sm:text-2xl lg:text-[26px] font-black text-slate-900 tracking-tight whitespace-nowrap">
+                {isArabic ? (
+                  <>
+                    أرقامنا <span className="text-[#00A3E8]">تروي قصة إنجازاتنا</span>
+                  </>
+                ) : (
+                  <>
+                    Our Numbers <span className="text-[#00A3E8]">Tell the Story</span>
+                  </>
+                )}
+              </h3>
+              <div className="h-[1.5px] bg-gradient-to-r from-[#00A3E8]/80 via-sky-300 to-transparent flex-grow rounded-full hidden md:block" />
+            </div>
 
-              <img 
-                src={globeMesh} 
-                alt="Treco Arabia Connected Globe Telemetry"
-                className="w-full h-auto max-h-[250px] sm:max-h-[340px] object-contain filter drop-shadow-[0_0_35px_rgba(56,189,248,0.35)] select-none pointer-events-none relative z-10"
-              />
+            {/* The 6 Single-Row Metrics Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-4 xl:gap-5 items-start">
+              {metrics.map((item, idx) => {
+                const Icon = item.icon;
 
-              {/* Pulsing Saudi Telemetry Location Pings */}
-              <div className="absolute top-[38%] left-[48%] -translate-x-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none z-20">
-                <span className="relative flex h-2.5 w-2.5 sm:h-3.5 sm:w-3.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38BDF8] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3.5 sm:w-3.5 bg-sky-400 shadow-[0_0_12px_#38BDF8]" />
-                </span>
-                <span className="px-1.5 py-0.5 sm:px-2 rounded-md bg-black/80 backdrop-blur-md border border-white/20 text-[8px] sm:text-[9px] font-mono font-bold text-white shadow-lg">
-                  KSA Hub Active
-                </span>
-              </div>
-
-              {/* Orbital Glow Ring Indicator */}
-              <div className="absolute inset-0 rounded-full border border-sky-400/20 animate-pulse pointer-events-none" />
-            </motion.div>
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: idx * 0.07 }}
+                    className="flex items-center gap-2.5 sm:gap-3 flex-shrink-0 group"
+                  >
+                    {/* Circle Icon Badge */}
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-sky-50 group-hover:bg-[#00A3E8]/10 text-[#00A3E8] border border-sky-100 flex items-center justify-center flex-shrink-0 transition-colors shadow-2xs">
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
+                    </div>
+                    {/* Number & Label */}
+                    <div>
+                      <div className="text-lg sm:text-xl lg:text-[22px] font-black text-slate-900 tracking-tight leading-none">
+                        <AnimatedNumber value={item.num} isInView={isInView} />
+                      </div>
+                      <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium leading-snug mt-1.5 max-w-[110px]">
+                        {item.label}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
 
           </div>
-
         </div>
 
       </div>

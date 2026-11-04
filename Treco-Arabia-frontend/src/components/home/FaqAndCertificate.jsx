@@ -12,7 +12,8 @@ import {
 } from 'lucide-react';
 import certificateImg from '../../assets/Certificate.png';
 
-function FaqAndCertificate({ t, lang }) {
+function FaqAndCertificate({ t, lang = "en" }) {
+  const isArabic = lang === "ar";
   const [openFaq, setOpenFaq] = useState(0);
   const [showCertModal, setShowCertModal] = useState(false);
   const contentRefs = useRef([]);
@@ -112,7 +113,7 @@ function FaqAndCertificate({ t, lang }) {
   return (
     <section 
       id="faq-certification" 
-      className="pt-20 sm:pt-24 pb-16 sm:pb-24 text-slate-900 border-b border-slate-200 relative overflow-hidden"
+      className="py-20 sm:py-24 bg-[#F8FAFC] text-slate-900 border-t border-b border-slate-300 relative overflow-hidden"
     >
       {/* ====== LAYER 1: Rich Multi-Stop Premium Light Gradient ====== */}
       <div 
@@ -185,29 +186,21 @@ function FaqAndCertificate({ t, lang }) {
       {/* ====== LAYER 9: Bottom Glow Border ====== */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300/60 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ========================================================= */}
         {/* SECTION 1: FAQ Accordion                                  */}
         {/* ========================================================= */}
         <div className="w-full mb-20 sm:mb-24">
           
-          {/* Header */}
-          <div className="text-center mb-10 sm:mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-[#00A3E8]/15 via-[#00A3E8]/8 to-transparent border border-[#00A3E8]/35 text-[#00A3E8] text-xs font-bold tracking-widest uppercase mb-4 shadow-[0_4px_20px_rgba(0,163,232,0.15)] backdrop-blur-sm">
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>{content.faqEyebrow}</span>
-            </div>
-
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-              <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
-                {content.faqTitle}
-              </span>
+          {/* ONLY THE NORMAL MINIMAL HEADING */}
+          <div className="mb-8 sm:mb-10 text-left rtl:text-right">
+            <h2
+              className="text-2xl sm:text-3xl font-black text-[#1F1F1F] tracking-tight uppercase"
+              style={{ color: '#1F1F1F' }}
+            >
+              {isArabic ? 'الأسئلة الشائعة' : 'FREQUENTLY ASKED QUESTIONS'}
             </h2>
-
-            <p className="mt-3 text-xs sm:text-base text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed">
-              {content.faqSubtitle}
-            </p>
           </div>
 
           {/* Accordion List */}
@@ -217,7 +210,7 @@ function FaqAndCertificate({ t, lang }) {
               return (
                 <div 
                   key={idx}
-                  className={`rounded-2xl transition-all duration-500 border overflow-hidden ${
+                  className={`rounded-none transition-all duration-500 border overflow-hidden ${
                     isOpen 
                       ? 'bg-white border-[#00A3E8]/50 shadow-[0_10px_40px_rgba(0,163,232,0.15)]' 
                       : 'bg-white/80 backdrop-blur-sm hover:bg-white border-slate-200 hover:border-[#00A3E8]/40 shadow-[0_2px_10px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_25px_rgba(0,163,232,0.08)]'
@@ -243,7 +236,7 @@ function FaqAndCertificate({ t, lang }) {
                     </div>
 
                     {/* Toggle Icon */}
-                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
+                    <div className={`w-9 h-9 rounded-none flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
                       isOpen 
                         ? 'bg-gradient-to-br from-[#00A3E8] to-[#0086C4] text-white shadow-[0_6px_20px_rgba(0,163,232,0.4)] rotate-180' 
                         : 'bg-[#00A3E8]/10 text-[#00A3E8] border border-[#00A3E8]/25 group-hover:border-[#00A3E8]/60 group-hover:bg-[#00A3E8]/15'
@@ -275,7 +268,7 @@ function FaqAndCertificate({ t, lang }) {
         {/* ========================================================= */}
         {/* SECTION 2: ISO 9001:2015 Certification Card              */}
         {/* ========================================================= */}
-        <div className="rounded-3xl border border-slate-200 hover:border-[#00A3E8]/50 bg-white/80 backdrop-blur-sm p-6 sm:p-10 lg:p-12 shadow-[0_20px_60px_rgba(15,23,42,0.08),0_0_50px_rgba(0,163,232,0.06)] relative overflow-hidden transition-all duration-500">
+        <div className="rounded-none border border-slate-200 hover:border-[#00A3E8]/50 bg-white/80 backdrop-blur-sm p-6 sm:p-10 lg:p-12 shadow-[0_20px_60px_rgba(15,23,42,0.08),0_0_50px_rgba(0,163,232,0.06)] relative overflow-hidden transition-all duration-500">
           
           {/* Top Cyan Accent */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A3E8] to-transparent opacity-80" />
@@ -289,9 +282,9 @@ function FaqAndCertificate({ t, lang }) {
             <div className="lg:col-span-5 flex flex-col items-center">
               <div 
                 onClick={() => setShowCertModal(true)}
-                className="relative group cursor-pointer rounded-2xl overflow-hidden p-2 bg-white border-2 border-[#00A3E8]/40 hover:border-[#00A3E8] shadow-[0_15px_40px_rgba(15,23,42,0.15),0_0_30px_rgba(0,163,232,0.1)] transition-all duration-500 hover:scale-[1.02]"
+                className="relative group cursor-pointer rounded-none overflow-hidden p-2 bg-white border-2 border-[#00A3E8]/40 hover:border-[#00A3E8] shadow-[0_15px_40px_rgba(15,23,42,0.15),0_0_30px_rgba(0,163,232,0.1)] transition-all duration-500 hover:scale-[1.02]"
               >
-                <div className="relative aspect-[3/4] max-w-[280px] sm:max-w-[320px] overflow-hidden rounded-xl bg-white">
+                <div className="relative aspect-[3/4] max-w-[280px] sm:max-w-[320px] overflow-hidden rounded-none bg-white">
                   <img 
                     src={certificateImg} 
                     alt="TRECO ISO 9001:2015 Management System Certificate" 
@@ -301,7 +294,7 @@ function FaqAndCertificate({ t, lang }) {
                   
                   {/* Hover Action Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-4">
-                    <span className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#00A3E8] to-[#0086C4] text-white font-black text-xs flex items-center gap-2 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                    <span className="px-4 py-2 rounded-none bg-gradient-to-r from-[#00A3E8] to-[#0086C4] text-white font-black text-xs flex items-center gap-2 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
                       <ZoomIn className="w-4 h-4" />
                       <span>{content.certBtnEnlarge}</span>
                     </span>
@@ -322,17 +315,11 @@ function FaqAndCertificate({ t, lang }) {
             <div className="lg:col-span-7 flex flex-col justify-between">
               
               <div>
-                {/* Eyebrow */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#00A3E8]/15 via-[#00A3E8]/8 to-transparent border border-[#00A3E8]/35 text-[#00A3E8] text-[11px] font-extrabold uppercase tracking-widest mb-4 shadow-[0_4px_20px_rgba(0,163,232,0.15)]">
-                  <Award className="w-3.5 h-3.5" />
-                  <span>{content.certEyebrow}</span>
-                </div>
-
-                {/* Title — gradient */}
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug mb-3">
-                  <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
-                    {content.certTitle}
-                  </span>
+                <h3
+                  className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1F1F1F] tracking-tight uppercase mb-3"
+                  style={{ color: '#1F1F1F' }}
+                >
+                  {content.certTitle}
                 </h3>
 
                 <p className="text-sm sm:text-base font-semibold text-slate-700 leading-relaxed mb-3">
@@ -344,7 +331,7 @@ function FaqAndCertificate({ t, lang }) {
                 </p>
 
                 {/* Scope Box */}
-                <div className="p-4 rounded-xl bg-[#00A3E8]/5 border border-[#00A3E8]/20 mb-6">
+                <div className="p-4 rounded-none bg-[#00A3E8]/5 border border-[#00A3E8]/20 mb-6">
                   <div className="flex items-center gap-2 text-xs font-bold text-[#00A3E8] uppercase tracking-wider mb-1.5">
                     <FileCheck className="w-4 h-4" />
                     <span>{content.certScopeTitle}</span>
@@ -359,7 +346,7 @@ function FaqAndCertificate({ t, lang }) {
                   {certBadges.map((badge, idx) => (
                     <div 
                       key={idx}
-                      className="px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-[#00A3E8]/40 flex items-center gap-2.5 text-xs font-semibold text-slate-700 hover:text-slate-900 shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_4px_15px_rgba(0,163,232,0.1)] transition-all"
+                      className="px-3.5 py-2 rounded-none bg-white border border-slate-200 hover:border-[#00A3E8]/40 flex items-center gap-2.5 text-xs font-semibold text-slate-700 hover:text-slate-900 shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_4px_15px_rgba(0,163,232,0.1)] transition-all"
                     >
                       <CheckCircle2 className="w-4 h-4 text-[#00A3E8] flex-shrink-0" />
                       <span>{badge}</span>
@@ -372,7 +359,7 @@ function FaqAndCertificate({ t, lang }) {
               <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-200">
                 <button
                   onClick={() => setShowCertModal(true)}
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#00A3E8] to-[#0086C4] hover:from-cyan-400 hover:to-[#00A3E8] text-white font-black text-xs sm:text-sm tracking-wide shadow-[0_8px_25px_rgba(0,163,232,0.4)] hover:shadow-[0_12px_35px_rgba(0,163,232,0.55)] transition-all flex items-center gap-2 cursor-pointer hover:-translate-y-0.5"
+                  className="px-6 py-3 rounded-none bg-gradient-to-r from-[#00A3E8] to-[#0086C4] hover:from-cyan-400 hover:to-[#00A3E8] text-white font-black text-xs sm:text-sm tracking-wide shadow-[0_8px_25px_rgba(0,163,232,0.4)] hover:shadow-[0_12px_35px_rgba(0,163,232,0.55)] transition-all flex items-center gap-2 cursor-pointer hover:-translate-y-0.5"
                 >
                   <ZoomIn className="w-4 h-4" />
                   <span>{content.certBtnEnlarge}</span>
@@ -401,7 +388,7 @@ function FaqAndCertificate({ t, lang }) {
           onClick={() => setShowCertModal(false)}
         >
           <div 
-            className="relative max-w-2xl w-full bg-white border-2 border-[#00A3E8]/60 rounded-3xl p-4 sm:p-6 shadow-[0_25px_80px_rgba(15,23,42,0.35)] overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+            className="relative max-w-2xl w-full bg-white border-2 border-[#00A3E8]/60 rounded-none p-4 sm:p-6 shadow-[0_25px_80px_rgba(15,23,42,0.35)] overflow-hidden animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
@@ -423,11 +410,11 @@ function FaqAndCertificate({ t, lang }) {
             </div>
 
             {/* Modal Image */}
-            <div className="relative max-h-[75vh] overflow-y-auto flex items-center justify-center bg-slate-50 rounded-xl p-2 border border-slate-200">
+            <div className="relative max-h-[75vh] overflow-y-auto flex items-center justify-center bg-slate-50 rounded-none p-2 border border-slate-200">
               <img 
                 src={certificateImg} 
                 alt="Treco Technologies ISO 9001:2015 Official Certificate" 
-                className="max-h-[70vh] w-auto object-contain rounded-lg"
+                className="max-h-[70vh] w-auto object-contain rounded-none"
               />
             </div>
 
@@ -436,7 +423,7 @@ function FaqAndCertificate({ t, lang }) {
               <span>Registration No: E20260244809</span>
               <button
                 onClick={() => setShowCertModal(false)}
-                className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#00A3E8] to-[#0086C4] hover:from-cyan-400 hover:to-[#00A3E8] text-white font-bold text-xs transition-all cursor-pointer shadow-[0_4px_15px_rgba(0,163,232,0.3)] hover:shadow-[0_6px_20px_rgba(0,163,232,0.5)]"
+                className="px-4 py-1.5 rounded-none bg-gradient-to-r from-[#00A3E8] to-[#0086C4] hover:from-cyan-400 hover:to-[#00A3E8] text-white font-bold text-xs transition-all cursor-pointer shadow-[0_4px_15px_rgba(0,163,232,0.3)] hover:shadow-[0_6px_20px_rgba(0,163,232,0.5)]"
               >
                 {content.certBtnClose}
               </button>

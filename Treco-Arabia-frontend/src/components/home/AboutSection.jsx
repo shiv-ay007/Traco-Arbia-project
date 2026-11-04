@@ -114,7 +114,7 @@ export function AboutSection({ lang = 'en' }) {
         </div>
 
         {/* MAIN CONTAINER: BALANCED 50/50 SPLIT */}
-        <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 h-full flex items-center relative z-10">
+        <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center relative z-10">
           
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 xl:gap-20 items-center">
             

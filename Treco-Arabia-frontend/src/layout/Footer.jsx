@@ -9,9 +9,9 @@ export function Footer({ t, lang }) {
   };
 
   return (
-    <footer className="bg-[#051329] text-slate-200 text-base border-t-2 border-[#00A3E8] relative z-10">
+    <footer className="dark-section bg-[#051329] text-slate-200 text-base border-t-2 border-[#00A3E8] relative z-10">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-7 sm:pb-8">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-7 sm:pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           
           {/* Column 1: Brand Info */}
@@ -30,12 +30,12 @@ export function Footer({ t, lang }) {
               </div>
             </Link>
 
-            <p className="text-sm text-slate-300 leading-relaxed font-normal">
+            <p className="text-sm !text-slate-300 leading-relaxed font-normal" style={{ color: "#CBD5E1" }}>
               {lang === "ar"
                 ? "تريكو العربية شركة رائدة في حلول أتمتة المنازل الذكية والأتمتة الصناعية بالمملكة."
                 : "Treco Arabia is a leading Smart Home & Industrial Automation company in Saudi Arabia."}
             </p>
-            <p className="text-sm font-bold text-white pt-.5">
+            <p className="text-sm font-bold !text-white pt-.5" style={{ color: "#FFFFFF" }}>
               {lang === "ar"
                 ? "مهندسون وفنيون معتمدون في الأتمتة"
                 : "Certified Automation Engineers & Technicians"}
@@ -323,48 +323,41 @@ export function Footer({ t, lang }) {
         </div>
       </div>
 
-      {/* Bottom Legal Bar - Translated to Arabic dynamically */}
+      {/* Bottom Bar */}
       <div className="bg-[#030C1C] border-t border-slate-800/80 py-4 sm:py-5 text-xs sm:text-sm text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-4 text-center lg:text-left">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-4 text-center lg:text-left">
           
           {/* 1. Copyright */}
-          <div className="font-semibold order-2 lg:order-1 text-slate-400">
+          <div className="text-slate-400 order-2 lg:order-1 min-w-[240px]">
             {lang === "ar" 
               ? "© 2026 تريكو العربية. جميع الحقوق محفوظة." 
               : "© 2026 Treco Arabia. All rights reserved."}
           </div>
 
-          {/* 2. Legal Links (Translated) */}
-          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 font-bold text-slate-300 order-3 lg:order-2">
-            <a href="#" className="hover:text-[#00A3E8] transition-colors">
-              {lang === "ar" ? "سياسة الخصوصية" : "Privacy Policy"}
-            </a>
-            <a href="#" className="hover:text-[#00A3E8] transition-colors">
-              {lang === "ar" ? "الشروط والأحكام" : "Terms & Conditions"}
-            </a>
-            <a href="#" className="hover:text-[#00A3E8] transition-colors">
-              {lang === "ar" ? "سياسة الاسترداد" : "Refund Policy"}
-            </a>
-          </div>
-
-          {/* 3. Designer Credit */}
-          <div className="flex items-center justify-center gap-2 text-white font-semibold order-1 lg:order-3">
-            <span className="text-slate-400">
-              {lang === "ar" ? "تصميم بواسطة" : "Designed by"}
+          {/* 2. Middle: Precision Crafted Credit (Strictly inline, larger logo) */}
+          <div className="flex items-center justify-center gap-2 sm:gap-3 text-slate-300 order-1 lg:order-2 whitespace-nowrap flex-nowrap">
+            <span className="text-[#00A3E8] font-mono font-bold text-sm sm:text-base">&lt;/&gt;</span>
+            <span className="text-xs sm:text-sm text-slate-300 font-medium">
+              {lang === "ar" 
+                ? "صُنعت بدقة وذكاء رقمي بواسطة" 
+                : "Precision Crafted with Digital Intelligence by"}
             </span>
             <a
               href="https://codecrafter.co.in"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center hover:opacity-80 transition-opacity"
+              className="inline-flex items-center hover:opacity-80 transition-opacity ml-1.5 flex-shrink-0"
             >
               <img
                 src={ccLogo}
                 alt="Code Crafter"
-                className="h-7 sm:h-8 w-auto object-contain"
+                className="h-8 sm:h-9 md:h-10 w-auto object-contain flex-shrink-0"
               />
             </a>
           </div>
+
+          {/* 3. Empty spacer for balanced 3-point desktop alignment */}
+          <div className="hidden lg:block min-w-[240px] order-3"></div>
 
         </div>
       </div>

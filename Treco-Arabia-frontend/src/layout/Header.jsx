@@ -162,7 +162,7 @@ export function Header({ lang, setLang, t }) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
         isTransparent
-          ? "bg-gradient-to-b from-black/80 via-black/40 to-transparent border-b border-transparent text-white"
+          ? "bg-transparent border-none shadow-none text-white"
           : "bg-white/95 backdrop-blur-md border-b border-gray-200 text-gray-900 shadow-sm"
       }`}
     >
@@ -183,9 +183,6 @@ export function Header({ lang, setLang, t }) {
                 className="h-10 md:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105"
               />
             </Link>
-
-            {/* Vertical Divider */}
-            <div className={`hidden md:block w-px h-6 transition-colors duration-300 ${isTransparent ? 'bg-white/20' : 'bg-gray-300'}`}></div>
 
             {/* Desktop Nav Links */}
             <div className="hidden md:flex items-center gap-1 lg:gap-2 h-full">

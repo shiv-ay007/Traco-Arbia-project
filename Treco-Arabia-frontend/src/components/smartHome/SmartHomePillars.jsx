@@ -22,7 +22,7 @@ export function SmartHomePillars({ lang = 'en' }) {
     <section className="py-8 sm:py-16 relative bg-gradient-to-b from-white via-[#F7FAFD] to-white border-b border-slate-200 overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-[#00A3E8]/8 blur-[140px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:py-1 rounded-full bg-white border border-[#00A3E8]/35 text-[#00A3E8] text-[9px] sm:text-xs font-bold tracking-widest uppercase mb-2 shadow-xs">

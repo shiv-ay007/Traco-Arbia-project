@@ -63,7 +63,7 @@ function IoTPoweredOperations({ lang = 'en' }) {
   ];
 
   return (
-    <section className="pt-16 sm:pt-24 pb-12 sm:pb-24 bg-gradient-to-b from-[#EAF4FB] via-white to-[#EAF4FB] text-slate-900 border-b border-slate-200 relative overflow-hidden">
+    <section className="py-16 sm:py-24 bg-white text-slate-900 border-t border-b border-slate-300 relative overflow-hidden">
       
       {/* Background Ambient Glows */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-[#00A3E8]/10 blur-[140px] pointer-events-none rounded-full" />
@@ -89,45 +89,16 @@ function IoTPoweredOperations({ lang = 'en' }) {
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
-          {/* Eyebrow Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A3E8]/10 border border-[#00A3E8]/30 text-[#00A3E8] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-3 sm:mb-4 shadow-2xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E8] animate-pulse" />
-            <span>{isArabic ? 'كفاءة تشغيلية ذكية' : 'INTELLIGENT OPERATIONS'}</span>
-          </div>
-
-          <motion.h2 
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight"
+        {/* Simple Minimal Heading: Zero Badges, Pure Uppercase Title, Perfectly Aligned */}
+        <div className="mb-8 sm:mb-10 text-left rtl:text-right">
+          <h2
+            className="text-2xl sm:text-3xl font-black text-[#1F1F1F] tracking-tight uppercase"
+            style={{ color: '#1F1F1F' }}
           >
-            {isArabic ? (
-              <>
-                أتمتة مدعومة بـ <span className="text-[#00A3E8]">إنترنت الأشياء</span> لعمليات تشغيلية ذكية
-              </>
-            ) : (
-              <>
-                <span className="text-[#00A3E8]">IoT-Powered Automation</span> for Smarter Operations
-              </>
-            )}
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-3 sm:mt-4 text-[11px] sm:text-base text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto"
-          >
-            {isArabic
-              ? 'حلول أتمتة شاملة تدير استهلاك الطاقة، ترفع مستويات الأمان، وتوفر رؤية فورية لكافة العمليات التشغيلية في مبانيك ومصانعك.'
-              : 'End-to-end automation to control connected devices, optimize resources, lower operational expenses, and elevate facility intelligence.'}
-          </motion.p>
+            {isArabic ? 'أتمتة العمليات بإنترنت الأشياء' : 'IOT-POWERED AUTOMATION'}
+          </h2>
         </div>
 
         {/* ============================================================ */}
@@ -138,7 +109,7 @@ function IoTPoweredOperations({ lang = 'en' }) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-2xl sm:rounded-[32px] bg-slate-200/90 border border-slate-300/80 shadow-[0_20px_50px_-10px_rgba(0,163,232,0.12),0_4px_25px_-5px_rgba(0,0,0,0.06)] overflow-hidden"
+          className="rounded-none bg-slate-200 border border-slate-300 shadow-sm overflow-hidden"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y md:divide-y-0 lg:divide-y-0 divide-slate-200">
             {features.map((item, idx) => {
@@ -164,7 +135,7 @@ function IoTPoweredOperations({ lang = 'en' }) {
 
                   <div className="relative z-10 flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
                     {/* Icon Container - Made smaller on mobile */}
-                    <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-950 to-[#0F1B33] p-2 sm:p-2.5 flex items-center justify-center border border-slate-800 shadow-md group-hover:scale-105 group-hover:border-[#00A3E8] group-hover:shadow-[0_0_20px_rgba(0,163,232,0.25)] transition-all duration-300 flex-shrink-0">
+                    <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-none bg-gradient-to-br from-slate-950 to-[#0F1B33] p-2 sm:p-2.5 flex items-center justify-center border border-slate-800 shadow-md group-hover:scale-105 group-hover:border-[#00A3E8] group-hover:shadow-[0_0_20px_rgba(0,163,232,0.25)] transition-all duration-300 flex-shrink-0">
                       <img 
                         src={item.icon} 
                         alt={item.title}
@@ -188,7 +159,7 @@ function IoTPoweredOperations({ lang = 'en' }) {
                   {/* Micro indicator line - Tightened on mobile */}
                   <div className="mt-4 pt-3 sm:mt-6 sm:pt-4 border-t border-slate-300/70 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-slate-500 group-hover:text-[#00A3E8] transition-colors relative z-10">
                     <span className="font-bold">0{idx + 1}</span>
-                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400 group-hover:bg-[#00A3E8] group-hover:shadow-[0_0_10px_#00A3E8] transition-all" />
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-none bg-slate-400 group-hover:bg-[#00A3E8] group-hover:shadow-[0_0_10px_#00A3E8] transition-all" />
                   </div>
                 </div>
               );

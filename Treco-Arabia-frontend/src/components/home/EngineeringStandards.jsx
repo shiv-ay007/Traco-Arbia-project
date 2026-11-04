@@ -14,7 +14,8 @@ import imgVision2030 from '../../assets/standards/standards_vision2030.jpg';
 import imgScada from '../../assets/standards/standards_scada.jpg';
 import emblemWhite from '../../assets/emblem-white.png';
 
-function EngineeringStandards({ t, lang }) {
+function EngineeringStandards({ t, lang = "en" }) {
+  const isArabic = lang === "ar";
   const [itemsPerView, setItemsPerView] = useState(3);
   const [currentIndex, setCurrentIndex] = useState(5);
   const [withTransition, setWithTransition] = useState(true);
@@ -143,7 +144,7 @@ function EngineeringStandards({ t, lang }) {
   return (
     <section 
       id="engineering-standards"
-      className="pt-16 sm:pt-24 pb-12 sm:pb-24 text-slate-900 border-b border-slate-200 relative overflow-hidden"
+      className="py-16 sm:py-24 bg-[#F2F6FA] text-slate-900 border-t border-b border-slate-300 relative overflow-hidden"
     >
       {/* Background Layers */}
       <div 
@@ -175,27 +176,16 @@ function EngineeringStandards({ t, lang }) {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00A3E8]/40 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300/60 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-8 gap-3 sm:gap-6">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-gradient-to-r from-[#00A3E8]/15 via-[#00A3E8]/8 to-transparent border border-[#00A3E8]/35 text-[#00A3E8] text-[9px] sm:text-xs font-bold tracking-widest uppercase mb-2 sm:mb-4 shadow-[0_4px_20px_rgba(0,163,232,0.15)] backdrop-blur-sm">
-              <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              <span>{content.eyebrow}</span>
-            </div>
-            
-            <h2 className="font-extrabold tracking-tight leading-tight text-[#1F1F1F]">
-              <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
-                {content.title}
-              </span>
-            </h2>
-
-            {/* Subtitle Hidden on Mobile */}
-            <p className="section-p mt-2 sm:mt-3 text-base text-[#1F1F1F] font-normal leading-relaxed">
-              {content.subtitle}
-            </p>
-          </div>
+        {/* ONLY THE NORMAL MINIMAL HEADING */}
+        <div className="mb-8 sm:mb-10 text-left rtl:text-right">
+          <h2
+            className="text-2xl sm:text-3xl font-black text-[#1F1F1F] tracking-tight uppercase"
+            style={{ color: '#1F1F1F' }}
+          >
+            {isArabic ? 'معايير الهندسة والامتثال' : 'ENGINEERING STANDARDS & COMPLIANCE'}
+          </h2>
         </div>
 
         {/* ========================================================= */}
@@ -206,7 +196,7 @@ function EngineeringStandards({ t, lang }) {
           <button
             onClick={prevSlide}
             aria-label="Previous standard"
-            className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/80 backdrop-blur-sm border border-slate-200 hover:border-[#00A3E8] hover:bg-white text-slate-900 flex items-center justify-center transition-all cursor-pointer shadow-[0_4px_15px_rgba(15,23,42,0.08)] hover:shadow-[0_8px_25px_rgba(0,163,232,0.15)] hover:scale-105"
+            className="w-9 h-9 sm:w-11 sm:h-11 rounded-none bg-white/80 backdrop-blur-sm border border-slate-200 hover:border-[#00A3E8] hover:bg-white text-slate-900 flex items-center justify-center transition-all cursor-pointer shadow-[0_4px_15px_rgba(15,23,42,0.08)] hover:shadow-[0_8px_25px_rgba(0,163,232,0.15)] hover:scale-105"
           >
             <ChevronLeft className={`w-4 h-4 sm:w-5 sm:h-5 ${lang === 'ar' ? 'rotate-180' : ''}`} />
           </button>
@@ -215,7 +205,7 @@ function EngineeringStandards({ t, lang }) {
           <button
             onClick={nextSlide}
             aria-label="Next standard"
-            className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-[#00A3E8] to-[#0086C4] hover:from-cyan-400 hover:to-[#00A3E8] text-white flex items-center justify-center transition-all cursor-pointer shadow-[0_6px_20px_rgba(0,163,232,0.4)] hover:shadow-[0_8px_25px_rgba(0,163,232,0.55)] hover:scale-105 font-black"
+            className="w-9 h-9 sm:w-11 sm:h-11 rounded-none bg-gradient-to-br from-[#00A3E8] to-[#0086C4] hover:from-cyan-400 hover:to-[#00A3E8] text-white flex items-center justify-center transition-all cursor-pointer shadow-[0_6px_20px_rgba(0,163,232,0.4)] hover:shadow-[0_8px_25px_rgba(0,163,232,0.55)] hover:scale-105 font-black"
           >
             <ChevronRight className={`w-4 h-4 sm:w-5 sm:h-5 ${lang === 'ar' ? 'rotate-180' : ''}`} />
           </button>
@@ -223,7 +213,7 @@ function EngineeringStandards({ t, lang }) {
 
         {/* CAROUSEL SLIDER TRACK */}
         <div 
-          className="relative overflow-hidden rounded-2xl sm:rounded-3xl"
+          className="relative overflow-hidden rounded-none"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -244,7 +234,7 @@ function EngineeringStandards({ t, lang }) {
                   className="px-1 sm:px-3 flex-shrink-0"
                   style={{ width: `${100 / itemsPerView}%` }}
                 >
-                  <div className="group rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 hover:border-[#00A3E8]/60 bg-white/80 backdrop-blur-sm transition-all duration-300 shadow-[0_4px_20px_rgba(15,23,42,0.06)] hover:shadow-[0_20px_50px_rgba(0,163,232,0.15)] flex flex-col h-full cursor-pointer hover:-translate-y-1">
+                  <div className="group rounded-none overflow-hidden border border-slate-200 hover:border-[#00A3E8]/60 bg-white/80 backdrop-blur-sm transition-all duration-300 shadow-[0_4px_20px_rgba(15,23,42,0.06)] hover:shadow-[0_20px_50px_rgba(0,163,232,0.15)] flex flex-col h-full cursor-pointer hover:-translate-y-1">
                     
                     {/* Image Container */}
                     <div className="relative h-48 sm:h-64 lg:h-72 w-full overflow-hidden bg-slate-100">

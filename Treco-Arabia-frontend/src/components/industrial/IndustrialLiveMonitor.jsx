@@ -40,7 +40,7 @@ export default function IndustrialLiveMonitor({ lang = 'en' }) {
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden border-b border-slate-200">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00A3E8]/5 blur-[120px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-[#00A3E8]/30 text-[#00A3E8] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-4 shadow-sm">

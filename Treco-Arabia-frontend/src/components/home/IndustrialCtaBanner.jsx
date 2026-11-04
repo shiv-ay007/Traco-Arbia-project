@@ -1,105 +1,118 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowLeft, Phone } from 'lucide-react';
+import { ArrowRight, Phone, Sparkles } from 'lucide-react';
 
-function IndustrialCtaBanner({ t, lang, onOpenQuote }) {
+export function IndustrialCtaBanner({ t, lang = 'en', onOpenQuote }) {
   const isArabic = lang === 'ar';
-
-  const defaultContent = {
-    eyebrow: isArabic
-      ? 'تواصل مع تريكو العربية'
-      : 'GET IN TOUCH WITH TRECO ARABIA',
-    title: isArabic
-      ? 'هل أنت جاهز لتطوير وتحديث عملياتك الصناعية؟'
-      : 'Ready to Upgrade Your Industrial Operations?',
-    desc: isArabic
-      ? 'تواصل مع مهندسينا المعتمدين في جدة للمعاينات الميدانية، وتصميم لوحات التحكم، وبرمجة PLC، وخطط التحديث المتكاملة.'
-      : 'Contact our certified automation specialists in Jeddah for site inspection, control panel design, PLC programming, and modernization plans.',
-    primaryBtn: isArabic
-      ? 'طلب استشارة مجانية'
-      : 'Request Free Quote',
-    secondaryBtn: isArabic
-      ? 'اتصل بنا: 791 076 50 966+'
-      : 'Call +966 50 076 1791',
-  };
-
-  const content = {
-    ...defaultContent,
-    ...(t?.industrialHome?.ctaBanner || {}),
-  };
 
   return (
     <section
       dir={isArabic ? 'rtl' : 'ltr'}
-      className="relative isolate overflow-hidden bg-[#F8FAFC] py-6 sm:py-9 md:py-10 border-t border-slate-200"
+      className="dark-section py-14 sm:py-20 bg-[#07090E] relative overflow-hidden border-t border-slate-800"
     >
-      {/* Background Dot Grid */}
+      {/* Background Ambient Radial Glows in Treco Brand Cyan */}
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#00A3E8]/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#0086C4]/15 rounded-full blur-[150px] pointer-events-none" />
+
+      {/* Subtle Dot Grid */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.16]"
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
-          backgroundImage: 'radial-gradient(#00A3E8 1.5px, transparent 1.5px)',
-          backgroundSize: '24px 24px',
+          backgroundImage: 'radial-gradient(#FFFFFF 1.5px, transparent 1.5px)',
+          backgroundSize: '28px 28px',
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Floating Contained Card */}
-        <div className="w-full relative overflow-hidden rounded-xl sm:rounded-3xl border border-sky-400/25 bg-[#0074B7] bg-gradient-to-r from-[#006097] via-[#0077B6] to-[#008CC5] px-4 py-5 sm:px-8 sm:py-8 md:px-12 md:py-9 text-center shadow-xl shadow-sky-950/20">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* ============================================================ */}
+        {/* FLOATING DARK LUXURY CTA CARD (TRECO ARABIA BRAND CYAN)      */}
+        {/* ============================================================ */}
+        <div className="relative w-full rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#12141C] via-[#0E1017] to-[#0A0B10] border border-white/10 p-7 sm:p-10 lg:p-14 shadow-2xl overflow-hidden">
           
-          {/* Soft Radial Ambient Glow */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              background: 'radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.32) 0%, transparent 70%)',
-            }}
-          />
+          {/* Brand Cyan Corner Light Flare */}
+          <div className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-[#00A3E8]/25 via-cyan-600/10 to-transparent blur-3xl pointer-events-none" />
 
-          {/* Content Container */}
-          <div className="relative z-10 mx-auto max-w-5xl">
-            {/* Eyebrow Pill Badge - Reduced padding on mobile */}
-            <div className="mb-2 sm:mb-2.5 inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-3 py-0.5 sm:px-3.5 sm:py-1 text-[9px] sm:text-xs font-semibold tracking-wider text-white uppercase backdrop-blur-xs">
-              {content.eyebrow}
+          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-12">
+            
+            {/* LEFT SIDE: Eyebrow + Bold Title + Description */}
+            <div className="max-w-2xl text-left rtl:text-right">
+              
+              {/* Eyebrow with Icon in Treco Cyan */}
+              <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#00A3E8] tracking-wider uppercase mb-3">
+                <Sparkles className="w-4 h-4 text-[#00A3E8] fill-[#00A3E8]/20" />
+                <span>{isArabic ? 'فلنعمل معاً نحو التميز' : "LET'S WORK TOGETHER"}</span>
+              </div>
+
+              {/* Main Headline with Treco Cyan Highlight */}
+              <h2
+                className="text-2xl sm:text-4xl lg:text-[40px] font-black tracking-tight leading-[1.18] mb-3"
+                style={{ color: '#FFFFFF', WebkitTextFillColor: '#FFFFFF' }}
+              >
+                {isArabic ? (
+                  <>
+                    هل أنت جاهز لتطوير{' '}
+                    <span
+                      data-cyan="true"
+                      className="text-cyan"
+                      style={{ color: '#00A3E8', WebkitTextFillColor: '#00A3E8' }}
+                    >
+                      عملياتك الصناعية؟
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    Ready to Upgrade Your{' '}
+                    <span
+                      data-cyan="true"
+                      className="text-cyan"
+                      style={{ color: '#00A3E8', WebkitTextFillColor: '#00A3E8' }}
+                    >
+                      Industrial Operations?
+                    </span>
+                  </>
+                )}
+              </h2>
+
+              {/* Subtitle */}
+              <p
+                className="text-sm sm:text-base font-normal leading-relaxed"
+                style={{ color: '#CBD5E1', WebkitTextFillColor: '#CBD5E1' }}
+              >
+                {isArabic
+                  ? 'من مرحلة المفهوم والدراسة إلى التشغيل المتكامل، نحن هنا لتحويل رؤيتك إلى واقع بأعلى معايير الجودة والدقة الهندسية.'
+                  : "From concept to completion, we're here to bring your vision to life with precision engineering, certified safety, and unmatched reliability."}
+              </p>
             </div>
 
-            {/* Heading - Reduced text size on mobile */}
-            <h2 className="mx-auto text-base sm:text-2xl md:text-[1.75rem] lg:text-[2.1rem] font-bold tracking-tight text-white leading-tight md:whitespace-nowrap">
-              {content.title}
-            </h2>
-
-            {/* Subtitle / Description - Hidden on mobile to save space */}
-            <p className="hidden sm:block mx-auto mt-2 max-w-3xl text-xs md:text-sm font-normal leading-relaxed text-white/90">
-              {content.desc}
-            </p>
-
-            {/* Centered CTA Buttons - Reduced gaps on mobile */}
-            <div className="mt-3 sm:mt-5 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3.5">
-              {/* Primary Button */}
+            {/* RIGHT SIDE: Action Buttons in Treco Brand Color */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 flex-shrink-0">
+              
+              {/* Primary Button (Treco Signature Cyan) */}
               <Link
                 to="/contact"
                 onClick={onOpenQuote}
-                className="inline-flex w-full sm:w-auto items-center justify-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl bg-white px-4 sm:px-6 py-2 sm:py-2.5 text-[11px] sm:text-sm font-bold text-slate-900 shadow-md hover:bg-slate-100 hover:shadow-lg transition-all duration-200 cursor-pointer group"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 sm:py-4 rounded-xl bg-[#00A3E8] hover:bg-[#0086C4] text-white font-bold text-sm sm:text-base shadow-lg shadow-[#00A3E8]/30 hover:shadow-[#00A3E8]/50 hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer whitespace-nowrap"
               >
-                <span>{content.primaryBtn}</span>
-                {isArabic ? (
-                  <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-200 group-hover:-translate-x-1" />
-                ) : (
-                  <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                )}
+                <span>{isArabic ? 'تواصل معنا' : 'Get in Touch'}</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform" />
               </Link>
 
-              {/* Secondary Button */}
+              {/* Secondary Button (Dark Card with Treco Cyan Border & Text) */}
               <a
                 href="tel:+966500761791"
-                className="inline-flex w-full sm:w-auto items-center justify-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl bg-[#024a75]/60 hover:bg-[#024a75]/85 border border-white/20 hover:border-white/40 px-4 sm:px-6 py-2 sm:py-2.5 text-[11px] sm:text-sm font-semibold text-white backdrop-blur-xs transition-all duration-200 shadow-sm"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:py-4 rounded-xl border border-[#00A3E8]/60 hover:border-[#00A3E8] bg-[#0A0B10]/80 hover:bg-[#00A3E8]/10 text-[#00A3E8] hover:text-cyan-300 font-bold text-sm sm:text-base backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap shadow-sm"
               >
-                <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-white" />
-                <span dir="ltr">{content.secondaryBtn}</span>
+                <Phone className="w-4 h-4 text-[#00A3E8]" />
+                <span dir="ltr">+966 50 076 1791</span>
               </a>
+
             </div>
+
           </div>
         </div>
+
       </div>
     </section>
   );

@@ -101,7 +101,7 @@ export function GalleryGrid({ lang, onOpenQuote }) {
           }}
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Category Filter Tabs */}
           <div className="w-full overflow-x-auto pb-2 mb-6 sm:mb-12 hide-scrollbar">

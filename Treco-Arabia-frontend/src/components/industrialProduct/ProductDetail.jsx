@@ -21,7 +21,7 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
     <>
       {/* Top Breadcrumb & Return Bar */}
       <div className="bg-slate-950 text-white border-b border-slate-800 shadow-md relative z-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 font-medium overflow-x-auto whitespace-nowrap">
             <Link to="/" className="hover:text-[#00A3E8] transition-colors">
               {t.nav.home}
@@ -48,7 +48,7 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
 
       {/* Quick Horizontal Product Switcher Strip */}
       <section className="bg-white border-b border-slate-200/90 py-3.5 shadow-xs overflow-x-auto relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 sm:gap-2.5 min-w-max">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 sm:gap-2.5 min-w-max">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-600 mr-2 flex items-center gap-1.5">
             <Factory className="w-3.5 h-3.5 text-[#00A3E8]" />
             <span>{isAr ? 'تصفح المعدات:' : 'Catalog:'}</span>
@@ -78,7 +78,7 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
         <div className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-[#00A3E8]/8 blur-[130px] pointer-events-none rounded-full" />
         <div className="absolute top-1/2 left-10 w-[500px] h-[300px] bg-sky-400/8 blur-[120px] pointer-events-none rounded-full" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mb-10">
             <div className="flex flex-wrap items-center gap-2.5 mb-3.5">
               <span className="px-3.5 py-1 rounded-full bg-[#00A3E8]/15 border border-[#00A3E8]/30 text-[#00A3E8] font-black text-xs uppercase tracking-wider">
@@ -203,7 +203,7 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
 
       {/* Deep Technical Specifications Table */}
       <section className="py-10 sm:py-12 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#00A3E8] mb-2">
@@ -258,7 +258,7 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
 
       {/* Industrial Applications in Saudi Arabia */}
       <section className="py-10 sm:py-12 bg-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00A3E8]/10 text-[#00A3E8] font-bold text-xs uppercase tracking-wider mb-3">
               <Factory className="w-3.5 h-3.5" />
@@ -302,7 +302,7 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[350px] bg-[#00A3E8]/12 blur-[130px] pointer-events-none rounded-full" />
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[350px] bg-sky-400/12 blur-[130px] pointer-events-none rounded-full" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="bg-gradient-to-br from-[#061C3D] via-[#0A2E5C] to-[#030E1F] text-white rounded-3xl sm:rounded-[2.5rem] py-10 px-6 sm:px-10 md:py-12 md:px-14 border border-sky-400/35 shadow-[0_25px_65px_-12px_rgba(0,163,232,0.32),0_12px_35px_rgba(3,14,31,0.5)] relative overflow-hidden text-center group">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E8] to-transparent opacity-90 group-hover:opacity-100 transition-opacity" />
             <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
@@ -352,7 +352,7 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
 
       {/* Explore Other Equipment Grid */}
       <section className="py-10 sm:py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#00A3E8] mb-1">
