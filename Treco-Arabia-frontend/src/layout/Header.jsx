@@ -64,8 +64,8 @@ export function Header({ lang, setLang, t }) {
   const navLinks = [
     { path: "/", label: t.nav.home, icon: Home },
     {
-      path: "/offerings",
-      label: t.nav.offerings || (lang === "ar" ? "خدماتنا" : "What We Offer"),
+      path: "/about",
+      label: t.nav.about || (lang === "ar" ? "من نحن" : "About Us"),
       icon: Layers,
     },
     { 
@@ -191,6 +191,7 @@ export function Header({ lang, setLang, t }) {
                 const isHome = link.isHomeMega;
                 const isActive =
                   location.pathname === link.path ||
+                  (link.path === "/about" && (location.pathname === "/offerings" || location.pathname === "/about")) ||
                   (isIndustrial && location.pathname.startsWith("/industrial")) ||
                   (isHome && location.pathname.startsWith("/smart-home"));
 
@@ -429,6 +430,7 @@ export function Header({ lang, setLang, t }) {
                 const isHome = link.isHomeMega;
                 const isActive =
                   location.pathname === link.path ||
+                  (link.path === "/about" && (location.pathname === "/offerings" || location.pathname === "/about")) ||
                   (isIndustrial && location.pathname.startsWith("/industrial")) ||
                   (isHome && location.pathname.startsWith("/smart-home"));
 

@@ -6,7 +6,7 @@ export const translations = {
       offerings: "What We Offer",
       industrial: "Industrial Automation",
       gallery: "Gallery",
-      about: "Who We Are",
+      about: "About Us",
       contact: "Contact Us",
       getQuote: "Request a Quote",
       langName: "العربية"

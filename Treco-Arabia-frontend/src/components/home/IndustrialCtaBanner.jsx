@@ -47,8 +47,8 @@ export function IndustrialCtaBanner({ t, lang = 'en', onOpenQuote }) {
 
               {/* Main Headline with Treco Cyan Highlight */}
               <h2
-                className="text-2xl sm:text-4xl lg:text-[40px] font-black tracking-tight leading-[1.18] mb-3"
-                style={{ color: '#FFFFFF', WebkitTextFillColor: '#FFFFFF' }}
+                className="text-2xl sm:text-4xl lg:text-[40px] font-black tracking-tight leading-[1.18] mb-3 [text-transform:none!important]"
+                style={{ color: '#FFFFFF', WebkitTextFillColor: '#FFFFFF', textTransform: 'none' }}
               >
                 {isArabic ? (
                   <>

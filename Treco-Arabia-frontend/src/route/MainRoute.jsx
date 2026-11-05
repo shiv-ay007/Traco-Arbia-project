@@ -11,6 +11,7 @@ import IndustrialPage from '../pages/IndustrialPage';
 import IndustrialProductPage from '../pages/IndustrialProductPage';
 import ContactPage from '../pages/ContactPage';
 import GalleryPage from '../pages/GalleryPage';
+import AboutPage from '../pages/AboutPage';
 
 // Auto scroll to top on page navigation
 function ScrollToTop() {
@@ -52,8 +53,16 @@ function MainRoutesContent({ lang, setLang, t }) {
             element={<SmartHomePage t={t} lang={lang} onOpenQuote={handleGoToContact} />} 
           />
           <Route 
+            path="/about" 
+            element={<AboutPage t={t} lang={lang} onOpenQuote={handleGoToContact} />} 
+          />
+          <Route 
+            path="/about-us" 
+            element={<AboutPage t={t} lang={lang} onOpenQuote={handleGoToContact} />} 
+          />
+          <Route 
             path="/offerings" 
-            element={<OfferingsPage t={t} lang={lang} onOpenQuote={handleGoToContact} />} 
+            element={<AboutPage t={t} lang={lang} onOpenQuote={handleGoToContact} />} 
           />
           <Route 
             path="/industrial" 

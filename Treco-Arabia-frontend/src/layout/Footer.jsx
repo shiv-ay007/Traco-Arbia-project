@@ -129,7 +129,7 @@ export function Footer({ t, lang }) {
               </li>
               <li>
                 <Link
-                  to="/offerings"
+                  to="/about"
                   onClick={scrollToTop}
                   className="hover:text-[#00A3E8] transition-colors flex items-center gap-2 cursor-pointer"
                 >
@@ -137,8 +137,8 @@ export function Footer({ t, lang }) {
                     className={`w-4 h-4 text-[#00A3E8] ${lang === "ar" ? "rotate-180" : ""}`}
                   />
                   <span>
-                    {t.nav.offerings ||
-                      (lang === "ar" ? "خدماتنا" : "What We Offer")}
+                    {t.nav.about ||
+                      (lang === "ar" ? "من نحن" : "About Us")}
                   </span>
                 </Link>
               </li>

@@ -159,30 +159,6 @@ export function GalleryGrid({ lang, onOpenQuote }) {
             ))}
           </div>
 
-          {/* Bottom CTA Card */}
-          <div className="mt-8 sm:mt-16 bg-white/95 backdrop-blur-sm p-4 sm:p-8 rounded-xl sm:rounded-3xl border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-5">
-            <div className="text-center sm:text-start">
-              <h3 className="text-sm sm:text-xl font-bold text-slate-900">
-                {isArabic 
-                  ? 'هل ترغب في تنفيذ مشروع مماثل لمنشأتك أو فيلتك؟' 
-                  : 'Interested in a Similar Installation?'}
-              </h3>
-              <p className="hidden sm:block text-xs sm:text-sm text-slate-500 font-normal mt-1">
-                {isArabic
-                  ? 'تواصل مع فريقنا الهندسي في جدة للحصول على دراسة موقعية واستشارة فنية مخصصة.'
-                  : 'Speak with our engineering specialists in Jeddah for technical site surveys and custom automation blueprints.'}
-              </p>
-            </div>
-
-            <Link
-              to="/contact"
-              onClick={onOpenQuote}
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-1.5 sm:gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl bg-[#00A3E8] hover:bg-[#0086C4] text-white font-bold text-[11px] sm:text-sm shadow-md transition-all shrink-0 cursor-pointer"
-            >
-              <span>{isArabic ? 'تواصل معنا الآن' : 'Contact Our Team'}</span>
-              {isArabic ? <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
-            </Link>
-          </div>
 
         </div>
       </section>

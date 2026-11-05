@@ -95,6 +95,30 @@ h2, .section-heading {
   color: #FFFFFF !important;
 }
 
+.normal-case, h1.normal-case, h2.normal-case, h3.normal-case, [data-normal-case] {
+  text-transform: none !important;
+}
+
+.dark-section input,
+.dark-section textarea,
+.dark-section select {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  background-color: #1A1D24 !important;
+}
+
+.dark-section input::placeholder,
+.dark-section textarea::placeholder {
+  color: #94A3B8 !important;
+  -webkit-text-fill-color: #94A3B8 !important;
+  opacity: 1 !important;
+}
+
+.dark-section .text-error {
+  color: #F87171 !important;
+  -webkit-text-fill-color: #F87171 !important;
+}
+
 .dark-section h1,
 .dark-section h2,
 .dark-section h3,

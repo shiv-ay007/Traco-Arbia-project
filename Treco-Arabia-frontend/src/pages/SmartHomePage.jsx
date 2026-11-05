@@ -6,7 +6,7 @@ import SmartHomePillars from '../components/smartHome/SmartHomePillars';
 import SyncrowProductsShowcase from '../components/home/SyncrowProductsShowcase';
 import RoomVisualizer from '../components/smartHome/RoomVisualizer';
 import VoiceDemo from '../components/smartHome/VoiceDemo';
-import SmartHomeCta from '../components/smartHome/SmartHomeCta';
+import IndustrialCtaBanner from '../components/home/IndustrialCtaBanner';
 
 function SmartHomePage({ t, lang, onOpenQuote }) {
   const location = useLocation();
@@ -68,9 +68,9 @@ function SmartHomePage({ t, lang, onOpenQuote }) {
         <VoiceDemo t={t} lang={lang} />
       </div>
 
-      {/* 7. Bottom Call-To-Action Banner & Energy Optimization */}
+      {/* 7. Bottom Call-To-Action Banner (Home Page Component) */}
       <div id="energy">
-        <SmartHomeCta t={t} lang={lang} />
+        <IndustrialCtaBanner t={t} lang={lang} onOpenQuote={onOpenQuote} />
       </div>
     </div>
   );
