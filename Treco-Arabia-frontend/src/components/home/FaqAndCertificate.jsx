@@ -1,12 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { 
-  ChevronDown 
-} from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 function FaqAndCertificate({ t, lang = "en" }) {
   const isArabic = lang === "ar";
   const [openFaq, setOpenFaq] = useState(0);
-  const contentRefs = useRef([]);
 
   const content = t?.industrialHome?.faqAndCertificate || {
     faqEyebrow: lang === 'ar' ? 'الأسئلة الأكثر تكراراً' : 'COMMON QUESTIONS',
@@ -59,18 +57,6 @@ function FaqAndCertificate({ t, lang = "en" }) {
   };
 
   const faqs = content.faqs || [];
-
-  // Smooth auto-height calculation for accordion
-  useEffect(() => {
-    contentRefs.current.forEach((el, idx) => {
-      if (!el) return;
-      if (openFaq === idx) {
-        el.style.maxHeight = el.scrollHeight + 'px';
-      } else {
-        el.style.maxHeight = '0px';
-      }
-    });
-  }, [openFaq, faqs.length]);
 
   return (
     <section 
@@ -127,60 +113,81 @@ function FaqAndCertificate({ t, lang = "en" }) {
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-3.5 sm:space-y-4">
+        <div className="space-y-3 sm:space-y-3.5">
           {faqs.map((item, idx) => {
             const isOpen = openFaq === idx;
             return (
               <div 
                 key={idx}
-                className={`rounded-none transition-all duration-500 border overflow-hidden ${
+                className={`rounded-none transition-colors duration-200 border overflow-hidden ${
                   isOpen 
-                    ? 'bg-white border-[#00A3E8]/50 shadow-[0_10px_40px_rgba(0,163,232,0.15)]' 
-                    : 'bg-white/80 backdrop-blur-sm hover:bg-white border-slate-200 hover:border-[#00A3E8]/40 shadow-[0_2px_10px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_25px_rgba(0,163,232,0.08)]'
+                    ? 'bg-white border-[#00A3E8] shadow-[0_8px_30px_rgba(0,163,232,0.12)]' 
+                    : 'bg-white/85 hover:bg-white border-slate-200 hover:border-[#00A3E8]/50 shadow-[0_1px_4px_rgba(0,0,0,0.03)]'
                 }`}
               >
                 {/* Clickable Header */}
                 <button
                   onClick={() => setOpenFaq(isOpen ? null : idx)}
-                  className="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between gap-4 text-start cursor-pointer group"
+                  className="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between gap-4 text-start cursor-pointer group select-none"
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-3.5 sm:gap-4 flex-1">
-                    <span className={`text-xs sm:text-sm font-black transition-colors ${
+                    <span className={`text-xs sm:text-sm font-black transition-colors duration-200 ${
                       isOpen ? 'text-[#00A3E8]' : 'text-slate-400 group-hover:text-[#00A3E8]'
                     }`}>
                       {String(idx + 1).padStart(2, '0')}.
                     </span>
-                    <span className={`text-sm sm:text-base lg:text-lg font-bold transition-colors ${
+                    <span className={`text-sm sm:text-base lg:text-lg font-bold transition-colors duration-200 ${
                       isOpen ? 'text-slate-900' : 'text-slate-700 group-hover:text-slate-900'
                     }`}>
                       {item.q}
                     </span>
                   </div>
 
-                  {/* Toggle Icon */}
-                  <div className={`w-9 h-9 rounded-none flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
-                    isOpen 
-                      ? 'bg-gradient-to-br from-[#00A3E8] to-[#0086C4] text-white shadow-[0_6px_20px_rgba(0,163,232,0.4)] rotate-180' 
-                      : 'bg-[#00A3E8]/10 text-[#00A3E8] border border-[#00A3E8]/25 group-hover:border-[#00A3E8]/60 group-hover:bg-[#00A3E8]/15'
-                  }`}>
+                  {/* Toggle Icon with Smooth Rotation */}
+                  <motion.div 
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.28, ease: [0.25, 1, 0.5, 1] }}
+                    className={`w-9 h-9 rounded-none flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${
+                      isOpen 
+                        ? 'bg-[#00A3E8] text-white shadow-[0_4px_16px_rgba(0,163,232,0.35)]' 
+                        : 'bg-[#00A3E8]/10 text-[#00A3E8] border border-[#00A3E8]/25 group-hover:bg-[#00A3E8]/20'
+                    }`}
+                  >
                     <ChevronDown className="w-4 h-4" />
-                  </div>
+                  </motion.div>
                 </button>
 
-                {/* Expandable Body */}
-                <div 
-                  ref={(el) => (contentRefs.current[idx] = el)}
-                  style={{
-                    maxHeight: '0px',
-                    transition: 'max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 400ms ease'
-                  }}
-                  className={`overflow-hidden ${isOpen ? 'opacity-100' : 'opacity-0'}`}
-                >
-                  <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200 pl-11 sm:pl-14">
-                    {item.a}
-                  </div>
-                </div>
+                {/* Expandable Body with Buttery Smooth Animation */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key={`faq-content-${idx}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ 
+                        height: 'auto', 
+                        opacity: 1,
+                        transition: {
+                          height: { duration: 0.35, ease: [0.04, 0.62, 0.23, 0.98] },
+                          opacity: { duration: 0.22, delay: 0.05 }
+                        }
+                      }}
+                      exit={{ 
+                        height: 0, 
+                        opacity: 0,
+                        transition: {
+                          height: { duration: 0.28, ease: [0.04, 0.62, 0.23, 0.98] },
+                          opacity: { duration: 0.15 }
+                        }
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pl-11 sm:pl-14">
+                        {item.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

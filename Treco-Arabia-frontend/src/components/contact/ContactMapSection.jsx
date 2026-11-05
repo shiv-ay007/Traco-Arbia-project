@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, ExternalLink } from 'lucide-react';
+import { MapPin, ExternalLink, Navigation } from 'lucide-react';
 
 export function ContactMapSection({ lang }) {
   const isAr = lang === 'ar';
@@ -11,7 +11,7 @@ export function ContactMapSection({ lang }) {
         {/* Minimal Header Card above Map */}
         <div className="bg-white p-5 sm:p-7 rounded-t-2xl sm:rounded-t-3xl border border-b-0 border-slate-200/90 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 shadow-xs">
           <div className="flex items-center gap-3.5 sm:gap-4">
-            <div className="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center text-[#00A3E8] flex-shrink-0">
+            <div className="w-11 h-11 rounded-xl bg-[#00A3E8]/10 border border-[#00A3E8]/20 flex items-center justify-center text-[#00A3E8] flex-shrink-0">
               <MapPin className="w-5 h-5" />
             </div>
             <div>
@@ -30,11 +30,12 @@ export function ContactMapSection({ lang }) {
             </div>
           </div>
 
+          {/* Open in Google Maps Button (Website Brand Cyan) */}
           <a
             href="https://www.google.com/maps/search/?api=1&query=21.54225,39.30025"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-slate-900 hover:bg-[#00A3E8] text-white hover:text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-sm hover:shadow-md whitespace-nowrap cursor-pointer flex items-center gap-2 group/btn"
+            className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-[#00A3E8] hover:bg-[#0086C4] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap cursor-pointer flex items-center gap-2 group/btn"
           >
             <span>{isAr ? 'عرض على خرائط جوجل' : 'Open in Google Maps'}</span>
             <ExternalLink className={`w-4 h-4 ${isAr ? 'rotate-180' : ''}`} />
@@ -54,13 +55,14 @@ export function ContactMapSection({ lang }) {
             referrerPolicy="strict-origin-when-cross-origin"
             className="w-full h-full"
           />
+          {/* Live Directions Floating Button */}
           <a
             href="https://www.google.com/maps/search/?api=1&query=21.54225,39.30025"
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 px-4 py-2 rounded-xl bg-slate-950/85 hover:bg-[#00A3E8] text-white hover:text-slate-950 font-bold text-xs backdrop-blur-md border border-white/20 transition-all shadow-lg flex items-center gap-2 cursor-pointer z-10"
+            className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 px-4 py-2.5 rounded-xl bg-white hover:bg-[#00A3E8] text-slate-800 hover:text-white font-bold text-xs border border-slate-200/90 hover:border-[#00A3E8] transition-all shadow-lg hover:shadow-xl flex items-center gap-2 cursor-pointer z-10"
           >
-            <MapPin className="w-3.5 h-3.5 text-[#00A3E8] group-hover:text-slate-950" />
+            <Navigation className="w-3.5 h-3.5 text-[#00A3E8] group-hover:text-white" />
             <span>{isAr ? 'التوجيه الملاحي المباشر' : 'Get Live Directions'}</span>
           </a>
         </div>

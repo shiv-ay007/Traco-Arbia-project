@@ -8,139 +8,141 @@ function IndustrialSection({ lang, onOpenQuote }) {
   const isAr = lang === 'ar';
 
   return (
-    <section id="industrial" className="py-12 sm:py-16 md:py-20 relative bg-[#F8FAFC] text-slate-900 border-b border-slate-200/80 overflow-hidden">
-      
-      {/* Subtle Micro Ambient Glow */}
-      <div className="absolute top-0 right-1/4 w-[400px] h-[300px] bg-[#00A3E8]/5 blur-[120px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-0 left-1/4 w-[400px] h-[300px] bg-sky-400/5 blur-[120px] pointer-events-none rounded-full" />
+    <section
+      id="industrial"
+      className="py-16 sm:py-20 md:py-24 bg-white text-slate-900 border-b border-slate-200"
+    >
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8">
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header (Minimal - Clean Typography) */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <p className="text-xs font-mono font-semibold tracking-wider text-[#00A3E8] uppercase mb-2">
-            / {isAr ? 'المنظومات والعتاد الصناعي' : 'Industrial Hardware'}
+        {/* ---------- Header ---------- */}
+        <div className="max-w-2xl mb-12 sm:mb-16">
+          <p className="text-[11px] font-medium tracking-[0.18em] text-slate-400 uppercase mb-4">
+            {isAr ? 'المنظومات الصناعية' : 'Industrial Systems'}
           </p>
 
           <h2
-            data-normal-case="true"
-            className="normal-case text-2xl sm:text-4xl lg:text-[40px] font-black text-slate-900 mb-3 tracking-tight leading-tight [text-transform:none!important]"
+            className="text-3xl sm:text-4xl lg:text-[42px] font-semibold text-slate-900 leading-[1.15] tracking-tight mb-4"
             style={{ textTransform: 'none' }}
           >
             {isAr ? (
-              <>
-                معدات ومنظومات <span className="text-[#00A3E8]">الأتمتة الصناعية</span>
-              </>
+              <>معدات ومنظومات <span className="text-[#00A3E8]">الأتمتة الصناعية</span></>
             ) : (
-              <>
-                Precision Industrial <span className="text-[#00A3E8]">Hardware & Systems</span>
-              </>
+              <>Precision industrial <span className="text-[#00A3E8]">hardware & systems</span></>
             )}
           </h2>
 
-          <p className="text-slate-500 text-sm sm:text-base font-normal leading-relaxed max-w-2xl mx-auto">
-            {isAr 
-              ? 'معدات وقطع غيار صناعية أصلية معتمدة مع التركيب والبرمجة الهندسية لكبرى المصانع والمنشآت في المملكة.'
-              : 'Engineered for maximum reliability, zero downtime, and operational excellence across Saudi industrial plants.'}
+          <p className="text-slate-500 text-[15px] leading-relaxed max-w-xl">
+            {isAr
+              ? 'معدات وقطع غيار صناعية أصلية معتمدة، مع التركيب والبرمجة الهندسية لكبرى المصانع والمنشآت في المملكة.'
+              : 'Authentic industrial hardware, engineered installation, and PLC programming for plants across the Kingdom.'}
           </p>
         </div>
 
-        {/* 8 Product Categories Grid: Tight Gap, Zero Radius, Editorial Minimalist Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-12">
+        {/* ---------- Grid ---------- */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-slate-200">
           {products.map((item, idx) => {
-            const catInfo = industrialNavigationCategories[idx] || industrialNavigationCategories.find(c => c.slug === item.id || c.id === item.id);
+            const catInfo =
+              industrialNavigationCategories[idx] ||
+              industrialNavigationCategories.find(
+                (c) => c.slug === item.id || c.id === item.id
+              );
             const targetPath = catInfo ? catInfo.path : `/industrial-automation/${item.id}`;
-            const subItems = catInfo ? (isAr ? catInfo.subItemsAr : catInfo.subItemsEn) : [];
-            const title = isAr ? (catInfo?.titleAr || item.titleAr) : (catInfo?.titleEn || item.titleEn);
+            const subItems = catInfo
+              ? isAr
+                ? catInfo.subItemsAr
+                : catInfo.subItemsEn
+              : [];
+            const title = isAr
+              ? catInfo?.titleAr || item.titleAr
+              : catInfo?.titleEn || item.titleEn;
 
             return (
-              <div 
+              <article
                 key={item.id}
                 id={catInfo?.slug || item.id}
-                className="bg-white rounded-none border border-slate-200/90 hover:border-[#00A3E8] transition-all duration-300 flex flex-col justify-between overflow-hidden group shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-md"
+                className="group relative flex flex-col bg-white border-r border-b border-slate-200 p-5 sm:p-6 overflow-hidden transition-colors duration-300"
               >
-                {/* Image & Content Wrapper */}
-                <div className="flex flex-col flex-1">
-                  {/* Photo Container - Edge to Edge, Zero Radius */}
-                  <Link 
-                    to={targetPath} 
-                    className="block relative w-full h-44 sm:h-48 overflow-hidden bg-slate-100 cursor-pointer rounded-none border-b border-slate-100"
-                  >
-                    <img 
-                      src={item.image} 
-                      alt={title}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded-none"
-                      loading="lazy"
-                    />
+                {/* ===== RTL OVERLAY (right → left) ===== */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 z-0
+                             bg-[#00A3E8]
+                             origin-right scale-x-0
+                             transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)]
+                             group-hover:scale-x-100"
+                />
+
+                {/* ===== CONTENT (above overlay) ===== */}
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* index number */}
+                  <span className="text-[11px] font-mono text-slate-300 mb-4 transition-colors duration-300 group-hover:text-white/60">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+
+                  {/* title */}
+                  <Link to={targetPath} className="block mb-2">
+                    <h3
+                      className="text-[15px] sm:text-base font-semibold text-slate-900 leading-snug
+                                 transition-colors duration-300 group-hover:text-white"
+                      style={{ textTransform: 'none' }}
+                    >
+                      {title}
+                    </h3>
                   </Link>
 
-                  {/* Card Title & Description */}
-                  <div className="p-4 sm:p-5 text-center flex flex-col flex-1">
-                    <Link to={targetPath} className="block">
-                      <h3
-                        className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#00A3E8] transition-colors mb-1.5 leading-snug cursor-pointer [text-transform:none!important]"
-                        style={{ textTransform: 'none' }}
-                      >
-                        {title}
-                      </h3>
-                    </Link>
-                    <p className="text-xs text-slate-500 font-normal leading-relaxed line-clamp-2 mb-3">
-                      {isAr ? item.descAr : item.descEn}
+                  {/* desc */}
+                  <p className="text-[13px] text-slate-500 leading-relaxed line-clamp-2 mb-6
+                                transition-colors duration-300 group-hover:text-white/80">
+                    {isAr ? item.descAr : item.descEn}
+                  </p>
+
+                  {/* sub items */}
+                  {subItems && subItems.length > 0 && (
+                    <p className="text-[12px] text-slate-400 leading-relaxed mb-6
+                                  transition-colors duration-300 group-hover:text-white/60">
+                      {subItems.slice(0, 3).join(' · ')}
                     </p>
+                  )}
 
-                    {/* Sub-items list tag preview - Sharp Rectangular Tags */}
-                    {subItems && subItems.length > 0 && (
-                      <div className="mt-auto pt-2.5 border-t border-slate-100 flex flex-wrap gap-1.5 justify-center">
-                        {subItems.map((sub, sIdx) => (
-                          <span 
-                            key={sIdx} 
-                            className="px-2 py-0.5 rounded-none bg-slate-50 border border-slate-200/70 text-slate-600 text-[10px] font-medium"
-                          >
-                            {sub}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Action Button - Sharp Rectangular Minimal Button */}
-                <div className="px-4 pb-4 sm:px-5 sm:pb-5 mt-auto">
+                  {/* footer link */}
                   <Link
                     to={targetPath}
-                    className="w-full py-2.5 rounded-none bg-slate-900 hover:bg-[#00A3E8] text-white font-bold text-xs transition-colors cursor-pointer flex items-center justify-center gap-1.5 group/btn"
+                    className="mt-auto inline-flex items-center gap-1 text-[12.5px] font-medium
+                               text-slate-700 transition-colors duration-300 group-hover:text-white"
                   >
-                    <span>{isAr ? 'استكشف المزيد' : 'Explore More'}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    <span>{isAr ? 'تفاصيل' : 'View details'}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </Link>
                 </div>
-
-              </div>
+              </article>
             );
           })}
         </div>
 
-        {/* Minimal Industrial Engineering Callout Strip - Sharp Rectangular */}
-        <div className="bg-white p-5 sm:p-7 rounded-none border border-slate-200/90 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-5">
-          <div>
+        {/* ---------- Callout ---------- */}
+        <div className="mt-14 sm:mt-16 pt-8 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div className="max-w-xl">
             <h3
-              className="text-base sm:text-lg font-bold text-slate-900 mb-1 [text-transform:none!important]"
+              className="text-[16px] sm:text-[17px] font-semibold text-slate-900 mb-1.5"
               style={{ textTransform: 'none' }}
             >
-              {isAr ? 'تصميم غرف التحكم الصناعي وبرمجة PLC' : 'Custom Industrial Control Room & PLC Engineering'}
+              {isAr
+                ? 'تصميم غرف التحكم الصناعي وبرمجة PLC'
+                : 'Custom control rooms & PLC engineering'}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-500 font-normal">
-              {isAr 
-                ? 'مهندسون سعوديون معتمدون مستعدون لزيارة موقع مصنعك ودراسة متطلبات التشغيل والأتمتة.'
-                : 'Certified Jeddah engineers ready to visit your factory site and deliver turnkey automation proposals.'}
+            <p className="text-[13.5px] text-slate-500 leading-relaxed">
+              {isAr
+                ? 'مهندسون معتمدون مستعدون لزيارة موقع مصنعك ودراسة متطلبات التشغيل والأتمتة.'
+                : 'Certified engineers ready to visit your site and deliver turnkey automation proposals.'}
             </p>
           </div>
-          <Link 
+          <Link
             to="/contact"
             onClick={onOpenQuote}
-            className="px-6 py-2.5 rounded-none bg-[#00A3E8] hover:bg-[#0086C4] text-white font-bold text-xs sm:text-sm transition-colors whitespace-nowrap cursor-pointer flex-shrink-0"
+            className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-slate-900 hover:text-[#00A3E8] transition-colors whitespace-nowrap"
           >
-            {isAr ? 'استشارة المهندس الصناعي' : 'Consult Industrial Team'}
+            <span>{isAr ? 'تحدث مع المهندس' : 'Talk to an engineer'}</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
