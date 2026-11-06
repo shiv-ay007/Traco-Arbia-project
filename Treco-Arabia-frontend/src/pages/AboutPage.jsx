@@ -24,6 +24,7 @@ import heroBg from '../assets/header_background_img/hero_bg_combined.jpg';
 import imgVilla from '../assets/gallery/gallery_villa_exterior.jpg';
 import imgScada from '../assets/gallery/gallery_scada.jpg';
 import imgMcc from '../assets/industrial_custom_webp/slide2_mcc_electrical_panel.webp';
+import imgRefinery from '../assets/industrial_custom_webp/slide3_refinery_tanks.webp';
 import sasoLogo from '../assets/standards/standards_saso.jpg';
 import iecLogo from '../assets/standards/standards_iec.jpg';
 import isoLogo from '../assets/standards/standards_iso.jpg';
@@ -451,16 +452,14 @@ export function AboutPage({ t, lang, onOpenQuote }) {
               </span>
             </div>
 
-            {/* Card 2: Mission (Branded Graphic Banner - Matching ABB's Center Card) */}
+            {/* Card 2: Mission (Editorial Photo Card) */}
             <div className="group cursor-pointer flex flex-col">
-              <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#00A3E8] via-sky-600 to-slate-900 flex flex-col items-center justify-center p-6 text-center text-white group-hover:brightness-105 transition-all">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_70%)] pointer-events-none" />
-                <span className="text-[11px] font-mono tracking-widest text-sky-200 uppercase mb-2 font-bold">
-                  {isAr ? 'المستهدف التشغيلي' : 'OPERATIONAL MANDATE'}
-                </span>
-                <h4 className="text-2xl sm:text-3xl font-black tracking-tight uppercase leading-tight drop-shadow-md">
-                  {isAr ? <>صفر توقف<br />تشغيلي</> : <>ZERO DOWNTIME<br />ENGINEERING</>}
-                </h4>
+              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                <img
+                  src={imgRefinery}
+                  alt="Treco Arabia Operational Mission"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
               <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 mt-4 mb-1.5 block">
                 {isAr ? 'الرسالة الهندسية' : 'OPERATIONAL MISSION'}

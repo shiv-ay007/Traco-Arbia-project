@@ -6,6 +6,8 @@ import {
   Send, FileText, Factory, Gauge, ChevronRight,
   Sparkles, Check
 } from 'lucide-react';
+import PageHero from '../common/PageHero';
+import IndustrialCtaBanner from '../home/IndustrialCtaBanner';
 import { getAllProducts } from '../../data/industrialProductsData';
 
 export function ProductDetail({ product, t, lang, onOpenQuote }) {
@@ -13,67 +15,34 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
   const allProducts = getAllProducts();
   const isAr = lang === 'ar';
 
+  const formatTitle = (text = '') => {
+    const parts = text.trim().split(' ');
+    if (parts.length <= 1) return { start: '', highlight: text };
+    const last = parts.pop();
+    return { start: parts.join(' '), highlight: last };
+  };
+
+  const titleFormatted = formatTitle(isAr ? product.titleAr : product.titleEn);
+
   const whatsappUrl = `https://wa.me/966567117621?text=${encodeURIComponent(
     `Hello Treco Arabia, I would like technical consultation and quotation for: ${product.titleEn}`
   )}`;
 
   return (
     <>
-      {/* Top Breadcrumb & Return Bar */}
-      <div className="bg-slate-950 text-white border-b border-slate-800 shadow-md relative z-20">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 font-medium overflow-x-auto whitespace-nowrap">
-            <Link to="/" className="hover:text-[#00A3E8] transition-colors">
-              {t.nav.home}
-            </Link>
-            <ChevronRight className={`w-3.5 h-3.5 flex-shrink-0 ${isAr ? 'rotate-180' : ''}`} />
-            <Link to="/industrial" className="hover:text-[#00A3E8] transition-colors">
-              {t.nav.industrial}
-            </Link>
-            <ChevronRight className={`w-3.5 h-3.5 flex-shrink-0 ${isAr ? 'rotate-180' : ''}`} />
-            <span className="text-[#00A3E8] font-bold">
-              {isAr ? product.titleAr : product.titleEn}
-            </span>
-          </div>
+      {/* 1. Page Hero Banner with System's Authentic Image (Matching all other pages) */}
+      <PageHero
+        bgImage={product.image}
+        parentText={isAr ? 'الأتمتة الصناعية' : 'Industrial Automation'}
+        parentLink="/industrial"
+        breadcrumbText={isAr ? product.titleAr : product.titleEn}
+        titleStart={titleFormatted.start}
+        titleHighlight={titleFormatted.highlight}
+        lang={lang}
+        t={t}
+      />
 
-          <Link
-            to="/industrial"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-white transition-colors"
-          >
-            <ArrowLeft className={`w-3.5 h-3.5 ${isAr ? 'rotate-180' : ''}`} />
-            <span>{isAr ? 'العودة لجميع المعدات' : 'All Industrial Equipment'}</span>
-          </Link>
-        </div>
-      </div>
-
-      {/* Quick Horizontal Product Switcher Strip */}
-      <section className="bg-white border-b border-slate-200/90 py-3.5 shadow-xs overflow-x-auto relative z-10">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 sm:gap-2.5 min-w-max">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-600 mr-2 flex items-center gap-1.5">
-            <Factory className="w-3.5 h-3.5 text-[#00A3E8]" />
-            <span>{isAr ? 'تصفح المعدات:' : 'Catalog:'}</span>
-          </span>
-          {allProducts.map((p) => {
-            const isActive = p.id === product.id;
-            return (
-              <button
-                key={p.id}
-                onClick={() => navigate(`/industrial/${p.id}`)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  isActive
-                    ? 'bg-[#00A3E8] text-slate-950 shadow-[0_2px_10px_rgba(0,163,232,0.35)]'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900'
-                }`}
-              >
-                <span>{isAr ? p.titleAr : p.titleEn}</span>
-                {isActive && <Check className="w-3 h-3 text-slate-950" />}
-              </button>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Main Product Hero Showcase */}
+      {/* Main Product Hero Showcase (Reverted to Original Design) */}
       <section className="pt-6 sm:pt-8 pb-10 sm:pb-12 bg-gradient-to-b from-white via-[#F0F7FF]/50 to-[#F8FAFC] border-b border-slate-200 relative overflow-hidden">
         <div className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-[#00A3E8]/8 blur-[130px] pointer-events-none rounded-full" />
         <div className="absolute top-1/2 left-10 w-[500px] h-[300px] bg-sky-400/8 blur-[120px] pointer-events-none rounded-full" />
@@ -131,7 +100,7 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
               <div className="grid grid-cols-2 gap-3 flex-shrink-0">
                 {product.quickStats.map((stat, idx) => (
                   <div 
-                    key={idx}
+                    key={idx} 
                     className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between"
                   >
                     <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-1">
@@ -264,88 +233,25 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
               <Factory className="w-3.5 h-3.5" />
               <span>{isAr ? 'القطاعات الصناعية المستهدفة' : 'Target Industries in KSA'}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-3">
-              {isAr ? 'تطبيقات المعدة في المنشآت والمصانع بالمملكة' : 'Proven Applications Across Saudi Industry'}
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              {isAr ? 'تطبيقات المنظومة في المصانع السعودية' : 'Strategic Industrial Deployments across KSA'}
             </h2>
-            <p className="text-slate-600 text-sm font-medium">
-              {isAr
-                ? 'مُعدة للاستخدام الشاق والمتواصل في كبرى المدن الصناعية بجدة، ينبع، الجبيل والرياض.'
-                : 'Built for 24/7 reliability in industrial facilities across Jeddah, Yanbu, Jubail, and Riyadh.'}
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {(isAr ? product.applicationsAr : product.applicationsEn).map((app, idx) => (
               <div 
                 key={idx}
-                className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-[#00A3E8] hover:shadow-md transition-all flex items-start gap-3.5 group"
+                className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-3.5"
               >
-                <div className="w-8 h-8 rounded-xl bg-[#00A3E8]/10 text-[#00A3E8] group-hover:bg-[#00A3E8] group-hover:text-slate-950 transition-colors flex items-center justify-center flex-shrink-0 font-bold text-sm">
-                  {idx + 1}
+                <div className="w-8 h-8 rounded-xl bg-slate-900 text-[#00A3E8] flex-shrink-0 flex items-center justify-center font-black text-xs">
+                  {String(idx + 1).padStart(2, '0')}
                 </div>
-                <div>
-                  <h4 className="text-sm font-black text-slate-900 group-hover:text-[#00A3E8] transition-colors mb-1">
-                    {app}
-                  </h4>
-                  <p className="text-xs text-slate-500 font-medium">
-                    {isAr ? 'تركيب وبرمجة وضمان محلي معتمد' : 'Turnkey installation, testing & KSA warranty'}
-                  </p>
-                </div>
+                <span className="text-xs sm:text-sm font-bold text-slate-800">
+                  {app}
+                </span>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Bottom CTA Banner */}
-      <section className="py-10 sm:py-14 bg-gradient-to-b from-white via-[#EBF5FC] to-white border-b border-slate-200 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[350px] bg-[#00A3E8]/12 blur-[130px] pointer-events-none rounded-full" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[350px] bg-sky-400/12 blur-[130px] pointer-events-none rounded-full" />
-
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="bg-gradient-to-br from-[#061C3D] via-[#0A2E5C] to-[#030E1F] text-white rounded-3xl sm:rounded-[2.5rem] py-10 px-6 sm:px-10 md:py-12 md:px-14 border border-sky-400/35 shadow-[0_25px_65px_-12px_rgba(0,163,232,0.32),0_12px_35px_rgba(3,14,31,0.5)] relative overflow-hidden text-center group">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E8] to-transparent opacity-90 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
-            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[650px] h-[300px] bg-gradient-to-b from-[#00A3E8]/30 via-cyan-400/12 to-transparent blur-[85px] pointer-events-none rounded-full" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-600/25 blur-[100px] pointer-events-none rounded-full" />
-            <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#00A3E8]/20 blur-[100px] pointer-events-none rounded-full" />
-
-            <div 
-              className="absolute inset-0 opacity-[0.06] pointer-events-none"
-              style={{
-                backgroundImage: 'radial-gradient(#00A3E8 1.5px, transparent 1.5px)',
-                backgroundSize: '24px 24px'
-              }}
-            />
-
-            <div className="max-w-4xl mx-auto relative z-10">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#00A3E8]/20 border border-[#00A3E8]/40 text-[#00A3E8] font-black text-xs uppercase tracking-wider mb-3.5 shadow-sm backdrop-blur-sm">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{isAr ? 'استشارة وعرض سعر' : 'Technical Consultation & Pricing'}</span>
-              </span>
-
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-4 tracking-tight leading-tight sm:whitespace-nowrap text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
-                {isAr 
-                  ? `هل تحتاج إلى استشارة أو عرض سعر لمعدة: ${product.titleAr}؟` 
-                  : `Need a Technical Quote for ${product.titleEn}?`}
-              </h2>
-
-              <p className="text-slate-200 text-xs sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
-                {isAr
-                  ? 'فريقنا الهندسي في جدة جاهز لمعاينة موقعك وتقديم عرض أسعار ومخطط فني متكامل.'
-                  : 'Connect with our Jeddah engineering team for an on-site facility assessment, system design, and tailored quotation.'}
-              </p>
-
-              <div className="flex items-center justify-center">
-                <Link
-                  to="/contact"
-                  className="px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-[#00A3E8] via-cyan-400 to-[#00A3E8] hover:from-cyan-300 hover:to-sky-300 text-slate-950 font-black text-xs sm:text-sm shadow-[0_0_28px_rgba(0,163,232,0.55)] hover:shadow-[0_0_38px_rgba(0,163,232,0.8)] hover:scale-105 transition-all cursor-pointer flex items-center gap-2 group/btn"
-                >
-                  <span>{t.nav.contact}</span>
-                  <ArrowRight className={`w-4 h-4 group-hover/btn:translate-x-1 transition-transform ${isAr ? 'rotate-180 group-hover/btn:-translate-x-1' : ''}`} />
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -419,6 +325,9 @@ export function ProductDetail({ product, t, lang, onOpenQuote }) {
           </div>
         </div>
       </section>
+    
+      {/* Global High-Impact Industrial Call-To-Action Banner */}
+      <IndustrialCtaBanner t={t} lang={lang} onOpenQuote={onOpenQuote} />
     </>
   );
 }

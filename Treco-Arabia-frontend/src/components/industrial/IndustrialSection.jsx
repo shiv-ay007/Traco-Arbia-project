@@ -39,7 +39,7 @@ function IndustrialSection({ lang, onOpenQuote }) {
         </div>
 
         {/* ---------- Grid ---------- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-slate-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {products.map((item, idx) => {
             const catInfo =
               industrialNavigationCategories[idx] ||
@@ -47,71 +47,50 @@ function IndustrialSection({ lang, onOpenQuote }) {
                 (c) => c.slug === item.id || c.id === item.id
               );
             const targetPath = catInfo ? catInfo.path : `/industrial-automation/${item.id}`;
-            const subItems = catInfo
-              ? isAr
-                ? catInfo.subItemsAr
-                : catInfo.subItemsEn
-              : [];
             const title = isAr
               ? catInfo?.titleAr || item.titleAr
-              : catInfo?.titleEn || item.titleEn;
+              : (item.id === 'pumps' ? 'Pumps' : (item.id === 'valve' ? 'Valve' : (catInfo?.titleEn || item.titleEn)));
 
             return (
               <article
                 key={item.id}
                 id={catInfo?.slug || item.id}
-                className="group relative flex flex-col bg-white border-r border-b border-slate-200 p-5 sm:p-6 overflow-hidden transition-colors duration-300"
+                className="group bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm hover:shadow-xl hover:border-[#00A3E8]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               >
-                {/* ===== RTL OVERLAY (right → left) ===== */}
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 z-0
-                             bg-[#00A3E8]
-                             origin-right scale-x-0
-                             transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)]
-                             group-hover:scale-x-100"
-                />
+                {/* Product Image */}
+                <Link
+                  to={targetPath}
+                  className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-50 mb-4 block"
+                >
+                  <img
+                    src={item.image}
+                    alt={title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  {idx === 0 && (
+                    <span className="absolute top-2.5 right-2.5 bg-[#00A3E8] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm z-10">
+                      NEW
+                    </span>
+                  )}
+                </Link>
 
-                {/* ===== CONTENT (above overlay) ===== */}
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* index number */}
-                  <span className="text-[11px] font-mono text-slate-300 mb-4 transition-colors duration-300 group-hover:text-white/60">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-
-                  {/* title */}
-                  <Link to={targetPath} className="block mb-2">
+                {/* Title & Explore Action */}
+                <div className="flex flex-col flex-1 justify-between gap-3.5 text-center">
+                  <Link to={targetPath} className="block">
                     <h3
-                      className="text-[15px] sm:text-base font-semibold text-slate-900 leading-snug
-                                 transition-colors duration-300 group-hover:text-white"
+                      className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#00A3E8] transition-colors leading-snug line-clamp-1"
                       style={{ textTransform: 'none' }}
                     >
                       {title}
                     </h3>
                   </Link>
 
-                  {/* desc */}
-                  <p className="text-[13px] text-slate-500 leading-relaxed line-clamp-2 mb-6
-                                transition-colors duration-300 group-hover:text-white/80">
-                    {isAr ? item.descAr : item.descEn}
-                  </p>
-
-                  {/* sub items */}
-                  {subItems && subItems.length > 0 && (
-                    <p className="text-[12px] text-slate-400 leading-relaxed mb-6
-                                  transition-colors duration-300 group-hover:text-white/60">
-                      {subItems.slice(0, 3).join(' · ')}
-                    </p>
-                  )}
-
-                  {/* footer link */}
                   <Link
                     to={targetPath}
-                    className="mt-auto inline-flex items-center gap-1 text-[12.5px] font-medium
-                               text-slate-700 transition-colors duration-300 group-hover:text-white"
+                    className="w-full py-2.5 px-4 rounded-xl bg-[#00A3E8] hover:bg-[#0086C4] active:scale-[0.98] text-white font-semibold text-xs sm:text-sm text-center transition-all shadow-sm hover:shadow-md cursor-pointer block"
                   >
-                    <span>{isAr ? 'تفاصيل' : 'View details'}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    {isAr ? 'استكشف المزيد' : 'Explore More'}
                   </Link>
                 </div>
               </article>

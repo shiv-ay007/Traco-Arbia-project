@@ -5,6 +5,8 @@ import { Home } from 'lucide-react';
 export function PageHero({
   bgImage,
   breadcrumbText,
+  parentText,
+  parentLink,
   titleStart,
   titleHighlight,
   titleEnd,
@@ -22,17 +24,17 @@ export function PageHero({
         <img
           src={bgImage}
           alt={breadcrumbText || 'Treco Arabia Banner'}
-          className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.7] pointer-events-none scale-100 sm:scale-105 transition-transform duration-700"
+          className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.6] pointer-events-none scale-100 sm:scale-105 transition-transform duration-700"
         />
       )}
 
       {/* Dark translucent overlay for maximum readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-slate-950/85 pointer-events-none" />
 
       {/* Main Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* Minimal Breadcrumb Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md text-xs sm:text-sm text-slate-300 mb-3 sm:mb-4 shadow-lg">
+        <div className="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md text-xs sm:text-sm text-slate-300 mb-3 sm:mb-4 shadow-lg">
           <Home className="w-3.5 h-3.5 text-slate-300 flex-shrink-0" />
           <Link
             to="/"
@@ -40,6 +42,19 @@ export function PageHero({
           >
             {t?.nav?.home || (isAr ? 'الرئيسية' : 'Home')}
           </Link>
+
+          {parentText && (
+            <>
+              <span className="text-slate-500 font-light">/</span>
+              <Link
+                to={parentLink || '/'}
+                className="hover:text-[#00A3E8] transition-colors font-medium text-slate-300"
+              >
+                {parentText}
+              </Link>
+            </>
+          )}
+
           <span className="text-slate-500 font-light">/</span>
           <span className="text-[#00A3E8] font-semibold">
             {breadcrumbText}
